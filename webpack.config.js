@@ -5,14 +5,14 @@ const webpack = require('webpack');
 const path = require('path');
 const DIST_DIR = path.join(__dirname, 'app/public');
 
-const NodemonBrowsersyncPlugin = require('nodemon-browsersync-webpack-plugin');
+// const NodemonBrowsersyncPlugin = require('nodemon-browsersync-webpack-plugin');
 
-// 2 вебпака пам пам env позже, clean, fonts, images, copy
+// позже, clean, fonts, images, copy
 
-console.log(path.join(__dirname, 'src'));
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    mode: 'development',
+    mode: process.env.NODE_ENV || 'development',
     output: {
         path: DIST_DIR,
     },
@@ -33,7 +33,8 @@ module.exports = {
                             loader: 'css-loader',
                             options: {
                                 minimize: true,
-                                sourceMap: true
+                                sourceMap: true,
+                                options: { minimize: isProduction }
                             }
                         },
                         {
@@ -63,15 +64,6 @@ module.exports = {
         new ExtractTextPlugin({
             filename:'./[name].css'
         }),
-        new NodemonBrowsersyncPlugin({
-                script: 'app.js',
-                ignore: [
-                    "src/*",
-                ],
-                ext: 'js json pug',
-                verbose: true
-            } // proxy??????
-        )
     ],
     devtool : "source-map"
 };

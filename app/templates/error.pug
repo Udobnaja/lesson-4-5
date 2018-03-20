@@ -1,5 +1,4 @@
-html
-    head
-        title= message
-    body
-        p= error
+extends layouts/error.pug
+
+block content
+    h2.error-text= error

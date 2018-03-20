@@ -4,14 +4,14 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 
-//define middlewares
+//define middle wares
 
 const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
 const logger = require("morgan");
 const errorhandler = require("errorhandler");
 
-const config = require('./config');
+const config = require('./app/config');
 const isProduction = process.env.NODE_ENV === 'production';
 
 // using middlewares from middlewares directory
@@ -60,7 +60,7 @@ app.use((req, res, next) => {
     next(err);
 });
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
     if (!isProduction) {
         console.log(err.stack);
     }

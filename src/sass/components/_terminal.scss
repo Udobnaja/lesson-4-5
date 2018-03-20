@@ -1,0 +1,9 @@
+.terminal{
+  &__input{
+    display: block;
+    width: 100%;
+    background-color: #272727;
+    color: $white;
+    padding-left: 10px;
+  }
+}

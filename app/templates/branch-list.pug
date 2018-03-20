@@ -1,0 +1,11 @@
+extends layouts/default.pug
+
+block content
+    h3 Branches
+    ul.list.list_group
+        each branch in branches
+            li.list__item
+                a(href='branch/' + branch )= branch
+                br
+                = 'хеши ?'
+

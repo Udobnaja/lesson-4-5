@@ -1,7 +1,10 @@
-html
-    head
-        title= title
-        link(rel='stylesheet', href='./main.css')
-    body
-        h1= message
-        p mew mew jj
+extends layouts/default.pug
+
+block content
+    form(action= '/' method= 'post')
+        div.terminal
+            input.terminal__input(placeholder= '> ' name= 'command' value= '')
+            input(type= 'submit' value= 'Выполнить команду' class= 'button button_primary')
+        if data
+            pre= data
+

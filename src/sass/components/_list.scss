@@ -1,0 +1,17 @@
+.list{
+  $list: &;
+  &_group{
+    list-style-type: none;
+    border-bottom-color: $gray;
+
+    #{$list}__item{
+      position: relative;
+      border: 1px solid $gray-light;
+      padding: 8px 10px;
+    }
+  }
+
+  &__item {
+
+  }
+}

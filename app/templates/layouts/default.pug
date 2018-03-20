@@ -1,0 +1,17 @@
+include ../blocks/error
+html
+    include ../includes/head.pug
+    body
+        block header
+            include ../includes/header.pug
+        main
+            .container
+                block panel
+                block content
+                +error(error)
+        block footer
+            .container
+                a(href='/term') Go To Command Line
+            include ../includes/footer.pug
+        block scripts
+            include ../includes/scripts.pug

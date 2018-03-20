@@ -2,7 +2,9 @@ const config = {
     port:  process.env.PORT || 3000,
     setting: {
         repo: {
-            path: ''
+            options: {
+                cwd: process.cwd()
+            }
         },
         date: {
             format: ''

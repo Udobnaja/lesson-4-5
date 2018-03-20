@@ -1,0 +1,8 @@
+extends layouts/default.pug
+
+block content
+    h3 Files
+        ul.list.list_group
+            each file in files
+                li.list__item
+                    =file

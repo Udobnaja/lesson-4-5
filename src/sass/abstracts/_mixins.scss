@@ -1,0 +1,6 @@
+@mixin hover-style {
+  color: $gray-dark;
+  border-color: lighten($gray-dark, 33.3%);
+  outline: 0;
+
+}

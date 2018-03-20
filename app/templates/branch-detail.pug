@@ -1,0 +1,12 @@
+extends layouts/default.pug
+
+block content
+    h3 Commits
+    ul.list.list_group
+        each commit in commits
+            li.list__item
+                div
+                    a(href='/commit/' + commit.hash)= commit.hash
+                    br
+                    = ' ' + commit.author + ' ' + commit.date
+                = commit.body
