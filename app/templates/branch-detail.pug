@@ -5,8 +5,8 @@ block content
     ul.list.list_group
         each commit in commits
             li.list__item
-                div
-                    a(href='/commit/' + commit.hash)= commit.hash
-                    br
-                    = ' ' + commit.author + ' ' + commit.date
+                a(href='/commit/' + commit.hash)= commit.hash
+                br
+                = ' ' + commit.author + ' ' + commit.date
+                br
                 = commit.body
