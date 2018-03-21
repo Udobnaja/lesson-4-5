@@ -69,11 +69,29 @@ indexRouter.route('/branch/:name')
 
         Exec(`git log ${req.params.name} --pretty=format:'%H'`, options)
             .then((log) => {
-                let hashes = log.split('\n');
+                const hashes = log.split('\n');
+                const promises = [];
 
-                res.render('branch-detail', {
-                    commits: hashes
-                })
+                for (let hash of hashes){
+                    promises.push(
+                        new Promise((resolve, reject) => {
+                            Exec(`git show --quiet --pretty='%n Author: %an %n Date: %ar %n Commit message: %s' ${hash}`)
+                                .then((info) => {
+                                    resolve({hash, info});
+                                })
+                                .catch(reject)
+                        }));
+                }
+
+                Promise.all([...promises]).then((commits) => {
+                    res.render('branch-detail', {
+                        commits
+                    });
+                }).catch((error) => {
+                    renderErrorPage({res, router: 'branch-detail', error})
+                });
+
+
             })
             .catch((error) => {
                 renderErrorPage({res, router: 'branch-detail', error})
