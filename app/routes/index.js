@@ -11,10 +11,10 @@ const stream = require('stream');
 
 // SHOULD IT BE LOGIC AND CONTROLLER
 
-const Exec = (command, options) => new Promise((resole, reject) => {
+const Exec = (command, options) => new Promise((resolve, reject) => {
     exec(command, options,  (err, stdout, stderr) => {
         if (err) return reject(err);
-        resole(stdout);
+        resolve(stdout);
     })
 });
 
@@ -66,17 +66,49 @@ indexRouter.route('/branch')
             });
     });
 
+const SEPARATOR = Math.random()*10e8;
+
 indexRouter.route('/branch/:name')
     .get((req, res) => {
+
         Exec(`git checkout ${req.params.name}`, options)
             .then(()=> {
             /* тут можно вставить формат даты ? в надежде что он валидный */
-                return Exec(`git log --pretty=format:'{"hash":"%h","author":"%an","date": "%ar","body": "%s"},'`, options);
+                return Exec(`
+                git log --pretty=format:'{
+                    "hash":"%h",
+                    "author":"%an",
+                    "date":"%ar",
+                    "body":"%s"} ${SEPARATOR}'`, options);
+
             }).then((log) => {
-            /* Чудеса на виражах */
-                let data = JSON.parse(`{"commits": [${log.slice(0, -1)}]}`);
+            /* JSON */
+               let chunk = log.split(SEPARATOR);
+               let commits = [];
+
+               for (let stringObject of chunk){
+                   if (stringObject.length === 0) continue;
+                   let object;
+                   try {
+                       object = JSON.parse(stringObject);
+                   } catch(e) {
+                       let strings = stringObject.match(/".*":".*"/g);
+                       let newObject = {};
+                       for (let str of strings){
+                           let position = str.indexOf(':');
+
+                           let key = str.slice(1, position - 1);
+                           let value = str.slice(position + 2, str.length - 1);
+                           newObject[key] = value;
+                       }
+                       object = newObject;
+                   }
+                   commits.push(object);
+               }
+
+
                 res.render('branch-detail', {
-                    commits: data.commits
+                    commits
                 })
             })
             .catch((error) => {
