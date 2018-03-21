@@ -1,7 +1,7 @@
 extends layouts/default.pug
 
 block content
-    form(action= '/' method= 'post')
+    form(action= '/term' method= 'post')
         div.terminal
             input.terminal__input(placeholder= '> ' name= 'command' value= '')
             input(type= 'submit' value= 'Выполнить команду' class= 'button button_primary')

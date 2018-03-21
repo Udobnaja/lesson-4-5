@@ -33,7 +33,7 @@ indexRouter
 indexRouter
     .route('/term')
         .get((req, res) => {
-            res.render('index', {
+            res.render('term', {
                 data: null,
                 errors: null
             });
@@ -44,11 +44,11 @@ indexRouter
             //
             Exec(req.body.command, options)
                 .then((data)=> {
-                    res.render('index', {
+                    res.render('term', {
                         data
                     });
                 }).catch((error) => {
-                    renderErrorPage({res, router: 'index', error});
+                    renderErrorPage({res, router: 'term', error});
                 });
 
             // promise with finally will be sexy
