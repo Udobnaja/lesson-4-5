@@ -1,9 +1,13 @@
+const path = process.cwd();
+
 const config = {
     port:  process.env.PORT || 3000,
     setting: {
-        repo: {
+        path,
+        exec: {
             options: {
-                cwd: process.cwd()
+                cwd: path,
+                maxBuffer: 200*1024
             }
         },
         date: {

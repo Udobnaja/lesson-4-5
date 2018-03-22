@@ -1,7 +1,7 @@
 const exec = require('../utils/exec');
 const renderError = require('../utils/renderError');
 const config = require('../config');
-const options = config.setting.repo.options;
+const options = config.setting.exec.options;
 
 exports.index = (req, res) => {
     res.render('term');
