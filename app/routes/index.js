@@ -104,17 +104,19 @@ indexRouter.route('/commit/:hash').get((req, res) => {
         .then((data) => {
             let files = data.split('\n');
 
-            const buildFlatTree = (string) => {
+            const buildFlatTree = (string, parent) => {
                 let pos = string.indexOf(path.sep);
                 if (pos > -1){
                     return {
                         dir: string.slice(0, pos),
-                        children: [buildFlatTree(string.slice(pos + 1))]
+                        children: [buildFlatTree(string.slice(pos + 1), parent)],
+                        parent
                     };
                 } else {
                     return {
                         dir: string,
-                        children: null
+                        children: null,
+                        parent
                     }
                 }
             };
@@ -129,13 +131,14 @@ indexRouter.route('/commit/:hash').get((req, res) => {
 
                 for (let branch of branches) {
                     index++;
-                    let { dir, children } = isRoot ? buildFlatTree(branch) : branch;
+                    let { dir, children, type, parent } = isRoot ? buildFlatTree(branch, branch) : branch;
 
                     if (!hierarchy[dir]) {
                         hierarchy[dir] = [];
 
                         if (currentDir && currentDir !== dir) {
-                            childrenHierarchy.push({dir: currentDir, children: buildHierarchy(hierarchy[currentDir])});
+                            let c = buildHierarchy(hierarchy[currentDir]);
+                            childrenHierarchy.push({dir: currentDir, children: c, type : c ? 'dir' : 'file', parent});
                         }
 
                         currentDir = dir;
@@ -146,7 +149,8 @@ indexRouter.route('/commit/:hash').get((req, res) => {
                     }
 
                     if (index === branches.length){
-                        childrenHierarchy.push({dir: currentDir, children: buildHierarchy(hierarchy[currentDir])});
+                        let c = buildHierarchy(hierarchy[currentDir]);
+                        childrenHierarchy.push({dir: currentDir, children: c, type : c ? 'dir' : 'file', parent});
                         return childrenHierarchy;
                     }
                 }

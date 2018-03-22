@@ -1,8 +1,10 @@
 mixin file-tree(tree)
     if tree
-        ul.product
+        ul.list.list_dom
             each child in tree
                 if child.dir
-                    li.product__name= child.dir
-                if child.children
-                    +file-tree(child.children)
+                    //if (child.type == 'file')
+                    //    li.list__item.link= child.dir
+                    //else
+                    li.list__item= child.dir
+                        +file-tree(child.children)

@@ -11,7 +11,35 @@
     }
   }
 
+  &_dom{
+    list-style-type: none;
+    padding: 0 0 0 1rem;
+
+    #{$list}__item{
+      position: relative;
+      font-size: 1.5rem;
+      &:first-child:before,
+      &:not(:last-child):after{
+        position: absolute;
+        border-color: $gray-light;
+        top: 0;
+        left: -1rem;
+        width: 0.8rem;
+        border-style: none none solid solid;
+        content: '';
+        border-width: 0.1rem;
+      }
+      &:first-child:before {
+        height: 1rem;
+      }
+
+      &:not(:last-child):after {
+        bottom: -2.2rem;
+      }
+  }
+
   &__item {
 
+  }
   }
 }
