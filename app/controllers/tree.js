@@ -10,10 +10,10 @@ exports.tree_list = (req, res) => {
             let files = data.split('\n');
             let tree = buildHierarchy(files, true);
 
-            res.render('file-tree', {
+            res.render('tree', {
                 tree
             })
         }).catch((error) => {
-            renderError({res, router: 'file-tree', error})
+            renderError({res, router: 'tree', error})
         })
 };

@@ -1,4 +1,4 @@
-mixin file-tree(tree)
+mixin tree(tree)
     if tree
         ul.list.list_dom
             each child in tree
@@ -7,4 +7,4 @@ mixin file-tree(tree)
                     //    li.list__item.link= child.dir
                     //else
                     li.list__item= child.dir
-                        +file-tree(child.children)
+                        +tree(child.children)
