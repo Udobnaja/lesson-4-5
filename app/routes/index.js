@@ -8,6 +8,7 @@ const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
 const readDirAsync = promisify(fs.readdir);
 const stream = require('stream');
+const path = require('path');
 
 // SHOULD IT BE LOGIC AND CONTROLLER
 
@@ -102,8 +103,80 @@ indexRouter.route('/commit/:hash').get((req, res) => {
     Exec(`git ls-tree --name-only -r ${req.params.hash}`, options)
         .then((data) => {
             let files = data.split('\n');
+
+            const buildFlatTree = (string) => {
+                let pos = string.indexOf('/');
+                if (pos > -1){
+                    return {
+                        dir: string.slice(0, pos),
+                        children: [buildFlatTree(string.slice(pos + 1))]
+                    };
+                } else {
+                    return {
+                        dir: string,
+                        children: null
+                    }
+                }
+            };
+
+            // TODO: выводить type директория или файл а так же полный путь для просмотра файла
+
+            const buildHierarchy = (branches, isRoot = false) => {
+                let hierarchy = {};
+                let currentDir = null;
+                let childrenHierarchy = [];
+                let index = 0;
+
+                for (let branch of branches) {
+                    index++;
+                    let { dir, children } = isRoot ? buildFlatTree(branch) : branch;
+
+                    if (!hierarchy[dir]) {
+                        hierarchy[dir] = [];
+
+                        if (currentDir && currentDir !== dir) {
+                            childrenHierarchy.push({dir: currentDir, children: buildHierarchy(hierarchy[currentDir])});
+                        }
+
+                        currentDir = dir;
+                    }
+
+                    if (children) {
+                        hierarchy[dir].push(...children);
+                    }
+
+                    if (index === branches.length){
+                        childrenHierarchy.push({dir: currentDir, children: buildHierarchy(hierarchy[currentDir])});
+                        return childrenHierarchy;
+                    }
+                }
+            };
+
+            // TODO: последняя строка пустая - чистить
+
+            let tree = buildHierarchy(files, true);
+
+            // for(let string of example){
+            //     let deep = 0;
+            //     let pos = string.indexOf('/');
+            //     let prevPos = -1;
+            //     let parent = null;
+            //     while(pos > -1){
+            //
+            //         let data = string.slice(0, pos);
+            //         let name = string.slice(prevPos+1, pos);
+            //         tree.push({deep, data, name, parent});
+            //         deep++;
+            //         prevPos = pos;
+            //         parent = name;
+            //
+            //         pos = string.indexOf("/", pos+1);
+            //     //    data то что то конкретное
+            //     }
+            // }
+
             res.render('file-list', {
-                files
+                tree
             })
         }).catch((error) => {
             renderErrorPage({res, router: 'file-list', error})

@@ -1,0 +1,8 @@
+mixin file-tree(tree)
+    if tree
+        ul.product
+            each child in tree
+                if child.dir
+                    li.product__name= child.dir
+                if child.children
+                    +file-tree(child.children)
