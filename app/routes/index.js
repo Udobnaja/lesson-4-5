@@ -105,7 +105,7 @@ indexRouter.route('/commit/:hash').get((req, res) => {
             let files = data.split('\n');
 
             const buildFlatTree = (string) => {
-                let pos = string.indexOf('/');
+                let pos = string.indexOf(path.sep);
                 if (pos > -1){
                     return {
                         dir: string.slice(0, pos),
