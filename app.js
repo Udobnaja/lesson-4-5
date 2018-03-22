@@ -50,8 +50,14 @@ app.set('views', './app/templates');
 app.set('view engine', 'pug');
 
 // routing
-const indexRouter = require('./app/routes/');
-app.use('/', indexRouter);
+const index = require('./app/routes/');
+const terminal = require('./app/routes/term');
+const branch = require('./app/routes/branch');
+const tree = require('./app/routes/tree');
+app.use(index);
+app.use(terminal);
+app.use(branch);
+app.use(tree);
 
 // 404
 app.use((req, res, next) => {
