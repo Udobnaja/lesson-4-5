@@ -54,11 +54,13 @@ const index = require('./app/routes/');
 const terminal = require('./app/routes/term');
 const branch = require('./app/routes/branch');
 const tree = require('./app/routes/tree');
+const blob = require('./app/routes/blob');
 app.use(index);
 app.use(terminal);
 app.use(branch);
 app.use(tree);
-
+app.use(blob);
+app.use(require('./app/routes/path'));
 // 404
 app.use((req, res, next) => {
     const err = new Error('Not Found');

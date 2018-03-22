@@ -1,7 +1,12 @@
 extends layouts/default.pug
-include ./blocks/file-tree
 
 block content
-    h3 Files
-    pre
-        +file-tree(tree)
+    h3 Files Structure
+    if files
+        ul.list.list_group
+            each file in files
+                li.list__item
+                    if (file.type == 'blob')
+                        a(href= '/blob/' + branch + '/' + file.hash)= file.name
+                    else
+                        a(href= '/path/' + branch + path + file.name)= file.name

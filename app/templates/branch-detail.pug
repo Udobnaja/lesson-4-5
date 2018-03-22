@@ -6,6 +6,7 @@ block content
         ul.list.list_group
             each commit in commits
                 li.list__item
-                    a(href='/tree/' + commit.hash)= commit.hash
-                    div(style="white-space: pre-line")
+                    a(href='/path/' + branch + '/'+ commit.hash)= commit.hash
+                    p(style="white-space: pre-line")
                         = commit.info
+                    a(href='/tree/' + branch + '/' + commit.hash ).button.button_no_offset.button_primary Browse Tree

@@ -3,6 +3,6 @@ const express = require('express');
 const router = express.Router();
 
 router
-    .get('/tree/:hash', treeController.tree_list);
+    .get('/tree/:branch/:hash', treeController.tree_list);
 
 module.exports = router;

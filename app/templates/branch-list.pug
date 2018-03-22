@@ -7,5 +7,7 @@ block content
             each branch in branches
                 li.list__item.list__item_flex
                     a(href='/branch/' + branch )= branch
-                    a(href='/tree/' + branch ).button.button_no_offset Browse Files
+                    div
+                        a(href='/path/' + branch).button.button_no_offset Browse Files
+                        a(href='/tree/' + branch + '/' + branch ).button.button_no_offset.button_primary Browse Tree
 

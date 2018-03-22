@@ -1,0 +1,7 @@
+extends layouts/default.pug
+include ./blocks/file-tree
+
+block content
+    h3 Files Tree
+    pre
+        +file-tree(tree)

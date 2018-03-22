@@ -20,10 +20,11 @@ exports.branch_detail = (req, res) => {
         .then((log) => {
             const hashes = log.split('\n');
             const promises = [];
+
             for (let hash of hashes){
                 promises.push(
                     new Promise((resolve, reject) => {
-                        exec(`git show --quiet --pretty='%n Author: %an %n Date: %ar %n Commit message: %s' ${hash}`)
+                        exec(`git show --quiet --pretty='%n Author: %an %n Date: %ar %n Commit message: %s' ${hash}`, options)
                             .then((info) => {
                                 resolve({hash, info});
                             })
@@ -33,7 +34,8 @@ exports.branch_detail = (req, res) => {
 
             Promise.all([...promises]).then((commits) => {
                 res.render('branch-detail', {
-                    commits
+                    commits,
+                    branch: req.params.name
                 });
             }).catch((error) => {
                 renderError({res, router: 'branch-detail', error})

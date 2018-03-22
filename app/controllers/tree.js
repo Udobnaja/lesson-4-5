@@ -5,15 +5,15 @@ const exec = require('../utils/exec');
 const buildHierarchy = require('../helpers/buildHierarchy');
 
 exports.tree_list = (req, res) => {
-    exec(`git ls-tree --name-only -r ${req.params.hash}`, options)
+    exec(`git ls-tree --name-only -r ${req.params.hash}`)
         .then((data) => {
             let files = data.split('\n');
             let tree = buildHierarchy(files, true);
 
-            res.render('file-list', {
+            res.render('file-tree', {
                 tree
             })
         }).catch((error) => {
-            renderError({res, router: 'file-list', error})
+            renderError({res, router: 'file-tree', error})
         })
 };
