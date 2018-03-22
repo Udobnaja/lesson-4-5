@@ -42,4 +42,8 @@
       border-color: $color-primary;
     }
   }
+
+  &_no_offset{
+    margin: 0;
+  }
 }

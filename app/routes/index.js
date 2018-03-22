@@ -99,7 +99,7 @@ indexRouter.route('/branch/:name')
             })
     });
 
-indexRouter.route('/commit/:hash').get((req, res) => {
+indexRouter.route('/tree/:hash').get((req, res) => {
     Exec(`git ls-tree --name-only -r ${req.params.hash}`, options)
         .then((data) => {
             let files = data.split('\n');
@@ -159,25 +159,6 @@ indexRouter.route('/commit/:hash').get((req, res) => {
             // TODO: последняя строка пустая - чистить
 
             let tree = buildHierarchy(files, true);
-
-            // for(let string of example){
-            //     let deep = 0;
-            //     let pos = string.indexOf('/');
-            //     let prevPos = -1;
-            //     let parent = null;
-            //     while(pos > -1){
-            //
-            //         let data = string.slice(0, pos);
-            //         let name = string.slice(prevPos+1, pos);
-            //         tree.push({deep, data, name, parent});
-            //         deep++;
-            //         prevPos = pos;
-            //         parent = name;
-            //
-            //         pos = string.indexOf("/", pos+1);
-            //     //    data то что то конкретное
-            //     }
-            // }
 
             res.render('file-list', {
                 tree
