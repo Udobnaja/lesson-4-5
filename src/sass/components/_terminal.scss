@@ -1,9 +1,23 @@
 .terminal{
+  &__box{
+    position: relative;
+    display: block;
+    &:before{
+      content: '> ';
+      display: block;
+      color: $white;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10px;
+    }
+  }
+
   &__input{
     display: block;
     width: 100%;
     background-color: #272727;
     color: $white;
-    padding-left: 10px;
+    padding-left: 30px;
   }
 }

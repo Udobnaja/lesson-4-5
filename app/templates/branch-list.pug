@@ -2,9 +2,10 @@ extends layouts/default.pug
 
 block content
     h3 Branches
-    ul.list.list_group
-        each branch in branches
-            li.list__item.list__item_flex
-                a(href='/branch/' + branch )= branch
-                a(href='/tree/' + branch ).button.button_no_offset Browse Files
+    if branches
+        ul.list.list_group
+            each branch in branches
+                li.list__item.list__item_flex
+                    a(href='/branch/' + branch )= branch
+                    a(href='/tree/' + branch ).button.button_no_offset Browse Files
 

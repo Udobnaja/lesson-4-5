@@ -3,8 +3,9 @@ extends layouts/default.pug
 block content
     form(action= '/term' method= 'post')
         div.terminal
-            input.terminal__input(placeholder= '> ' name= 'command' value= '')
-            input(type= 'submit' value= 'Выполнить команду' class= 'button button_primary')
+            span.terminal__box
+                input.terminal__input(name= 'command' value= '')
+            input(type= 'submit' value= 'Run' class= 'button button_primary')
         if data
             pre= data
 
