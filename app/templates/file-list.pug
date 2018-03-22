@@ -2,6 +2,15 @@ extends layouts/default.pug
 
 block content
     h3 Files Structure
+    if breadcrumbs
+        p
+            - var deep = ''
+            each crumb in breadcrumbs
+                - deep += '/' + crumb
+                a(href= '/path/' + branch  + deep)= crumb + '/'
+    else
+        p /
+
     if files
         ul.list.list_group
             each file in files

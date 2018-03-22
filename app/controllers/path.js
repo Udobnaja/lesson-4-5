@@ -5,7 +5,10 @@ const exec = require('../utils/exec');
 
 
 exports.show_dir = (req, res) => {
-    let [path, subdir] = (req.path.length === 1) ? [req.path, ''] : [req.path + '/', ':.' + req.path];
+    let isTop = req.path.length === 1;
+    let [path, subdir] = (isTop) ? [req.path, ''] : [req.path + '/', ':.' + req.path];
+    let pos = req.path.lastIndexOf('/');
+    let breadcrumbs = (pos !== -1 && !isTop) ? req.path.slice(1, pos).split('/') : null;
 
     exec(`git ls-tree ${req.params.branch}${subdir} | awk '{print $2} {print $3} {print $4}'`, options)
         .then((objects) => {
@@ -20,10 +23,12 @@ exports.show_dir = (req, res) => {
 
             files.pop();
 
+
             res.render('file-list', {
                 files: files,
                 branch: req.params.branch,
-                path
+                path,
+                breadcrumbs
             });
 
         }).catch((error) => {
