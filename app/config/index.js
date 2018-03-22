@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-const config = require('./env/defaults');
+let config = require('./env/defaults');
 
 if (process.env.NODE_ENV !== 'production') {
     let localConfig = {};
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
         localConfig = {};
     }
 
-    merge({}, config, localConfig);
+    config = merge({}, config, localConfig);
 }
 
 module.exports = config;
