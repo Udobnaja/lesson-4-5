@@ -16,6 +16,6 @@ block content
             each file in files
                 li.list__item
                     if (file.type == 'blob')
-                        a(href= '/blob/' + branch + '/' + file.hash)= file.name
+                        a(href= '/blob/' + branch + path + file.hash)= file.name
                     else
                         a(href= '/path/' + branch + path + file.name)= file.name
