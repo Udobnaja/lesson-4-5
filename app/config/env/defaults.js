@@ -11,7 +11,7 @@ const config = {
             }
         },
         date: {
-            format: ''
+            format: '%ar' /*/%ad, %aD, %aD, %at/*/
         }
     },
     logger: {

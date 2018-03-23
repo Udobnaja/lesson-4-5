@@ -24,7 +24,7 @@ exports.branch_detail = (req, res) => {
             for (let hash of hashes){
                 promises.push(
                     new Promise((resolve, reject) => {
-                        exec(`git show --quiet --pretty='%n Author: %an %n Date: %ar %n Commit message: %s' ${hash}`, options)
+                        exec(`git show --quiet --pretty='%n Author: %an %n Date: ${config.setting.date.format} %n Commit message: %s' ${hash}`, options)
                             .then((info) => {
                                 resolve({hash, info});
                             })
