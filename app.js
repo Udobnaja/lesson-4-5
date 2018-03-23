@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const compression = require('compression');
 
 const path = require('path');
 const fs = require('fs');
@@ -15,13 +16,16 @@ const config = require('./app/config');
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Using middlewares
-// compression, os, cors middlewares  - maybe latter
 
-// favicon
-// app.use(favicon(path.join(__dirname, 'app/public/images', 'favicon.ico')));
+// Cors midleware вроде как и не нужна
 
 // static
+app.use(compression());
 app.use(express.static('./app/public'));
+
+// favicon
+// С этим чо то делать, после установки клин вебпак - срвер запускается раньше чем появляется дирректория
+// app.use(favicon('./app/public/images/favicon.ico'));
 
 // logger
 app.use(logger(config.logger.format));
