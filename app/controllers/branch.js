@@ -24,9 +24,9 @@ exports.renderBranchDetail = (req, res) => {
             for (let hash of hashes) {
                 promises.push(
                     new Promise((resolve, reject) => {
-                        exec(`git show --quiet --pretty='%n 
-                                Author: %an %n 
-                                Date: ${config.setting.date.format} %n 
+                        exec(`git show --quiet --pretty=' 
+                                Author: %an 
+                                Date: ${config.setting.date.format} 
                                 Commit message: %s' ${hash}`, options)
                             .then((info) => {
                                 resolve({hash, info});
