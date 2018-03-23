@@ -7,7 +7,7 @@ exports.index = (req, res) => {
     res.render('term');
 };
 
-exports.execute_command = (req, res) => {
+exports.executeCommand = (req, res) => {
     exec(req.body.command, options)
         .then((data)=> {
             res.render('term', {

@@ -1,9 +1,10 @@
 const branchController = require('../controllers/branch');
 const express = require('express');
+/* eslint new-cap: ["error", { "capIsNew": false }]*/
 const router = express.Router();
 
 router
-    .get('/branch', branchController.branch_list)
-    .get('/branch/:name', branchController.branch_detail);
+    .get('/branch', branchController.renderBranchList)
+    .get('/branch/:name', branchController.renderBranchDetail);
 
 module.exports = router;

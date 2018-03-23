@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
     try {
         localConfig = require(`./env/${config.env}`);
         localConfig = localConfig || {};
-    } catch(err) {
+    } catch (err) {
         localConfig = {};
     }
 

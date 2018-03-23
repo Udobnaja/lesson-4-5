@@ -1,9 +1,10 @@
 const lsTreeController = require('../controllers/ls-tree');
 const express = require('express');
-const router = express.Router({ mergeParams: true });
+/* eslint new-cap: ["error", { "capIsNew": false }]*/
+const router = express.Router({mergeParams: true});
 
 router
-    .use('/ls-tree/:branch', lsTreeController.show_dir);
+    .use('/ls-tree/:branch', lsTreeController.renderLsTree);
 
 module.exports = router;
 

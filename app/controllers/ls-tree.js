@@ -4,7 +4,7 @@ const options = config.setting.exec.options;
 const exec = require('../utils/exec');
 
 
-exports.show_dir = (req, res) => {
+exports.renderLsTree = (req, res) => {
     let isTop = req.path.length === 1;
     let [path, subdir] = (isTop) ? [req.path, ''] : [req.path + '/', ':.' + req.path];
     let pos = req.path.lastIndexOf('/');
@@ -17,7 +17,7 @@ exports.show_dir = (req, res) => {
 
             let files = [];
 
-            for (let i = 0; i < structure.length; i += 3){
+            for (let i = 0; i < structure.length; i += 3) {
                 files.push({type: structure[i], hash: structure[i + 1], name: structure[i + 2]});
             }
 
@@ -32,6 +32,6 @@ exports.show_dir = (req, res) => {
             });
 
         }).catch((error) => {
-            renderError({res, router: 'ls-tree', error})
+            renderError({res, router: 'ls-tree', error});
         });
 };

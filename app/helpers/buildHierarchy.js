@@ -14,7 +14,7 @@ const buildHierarchy = (branches, isRoot = false) => {
 
     for (let branch of branches) {
         index++;
-        let { dir, children, parent } = isRoot ? buildFlatTree(branch, branch) : branch;
+        let {dir, children, parent} = isRoot ? buildFlatTree(branch, branch) : branch;
 
         if (!hierarchy[dir]) {
             hierarchy[dir] = [];
@@ -31,7 +31,7 @@ const buildHierarchy = (branches, isRoot = false) => {
             hierarchy[dir].push(...children);
         }
 
-        if (index === branches.length){
+        if (index === branches.length) {
             childrenHierarchy.push(createBranch({hierarchy, dir: currentDir, parent}));
             return childrenHierarchy;
         }

@@ -24,16 +24,16 @@ module.exports = {
                 use: ['babel-loader']
             },
             {
-                test:/\.(s*)css$/,
+                test: /\.(s*)css$/,
                 use: ExtractTextPlugin.extract({
-                    fallback:'style-loader',
-                    use:[
+                    fallback: 'style-loader',
+                    use: [
                         {
                             loader: 'css-loader',
                             options: {
                                 minimize: true,
                                 sourceMap: true,
-                                options: { minimize: isProduction }
+                                options: {minimize: isProduction}
                             }
                         },
                         {
@@ -41,7 +41,7 @@ module.exports = {
                             options: {
                                 plugins: [
                                     autoprefixer({
-                                        browsers:['ie >= 8', 'last 4 version']
+                                        browsers: ['ie >= 8', 'last 4 version']
                                     })
                                 ],
                                 sourceMap: true
@@ -62,7 +62,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['app/public']),
         new ExtractTextPlugin({
-            filename:'./[name].css'
+            filename: './[name].css'
         }),
         new CopyWebpackPlugin([
             {
@@ -71,5 +71,5 @@ module.exports = {
             },
         ])
     ],
-    devtool : "source-map"
+    devtool: 'source-map'
 };

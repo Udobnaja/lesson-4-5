@@ -5,12 +5,12 @@ const compression = require('compression');
 const path = require('path');
 const fs = require('fs');
 
-//define middle wares
+// define middle wares
 
 const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
-const logger = require("morgan");
-const errorhandler = require("errorhandler");
+const logger = require('morgan');
+const errorhandler = require('errorhandler');
 
 const config = require('./app/config');
 const isProduction = process.env.NODE_ENV === 'production';
@@ -58,9 +58,7 @@ app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
     next(err);
-});
-
-app.use((err, req, res, next) => {
+}).use((err, req, res, next) => {
     if (!isProduction) {
         console.log(err.stack);
     }
@@ -73,7 +71,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(config.port, config.host,  () => {
+app.listen(config.port, config.host, () => {
     console.log(`
         App listening on port ${config.port}, 
         host: ${config.host}, 

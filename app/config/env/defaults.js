@@ -1,7 +1,7 @@
 const path = process.cwd();
 
 const config = {
-    port:  process.env.PORT || 3000,
+    port: process.env.PORT || 3000,
     host: 'localhost',
     setting: {
         path,
@@ -12,7 +12,7 @@ const config = {
             }
         },
         date: {
-            format: '%ar' /*/%ad, %aD, %aD, %at/*/
+            format: '%ar' /* /%ad, %aD, %aD, %at/*/
         }
     },
     logger: {
