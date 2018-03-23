@@ -2,6 +2,7 @@ const path = process.cwd();
 
 const config = {
     port:  process.env.PORT || 3000,
+    host: 'localhost',
     setting: {
         path,
         exec: {

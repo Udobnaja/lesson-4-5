@@ -78,7 +78,10 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(config.port, () => {
-    console.log(`App listening on port ${config.port}`);
+app.listen(config.port, config.host,  () => {
+    console.log(`
+        App listening on port ${config.port}, 
+        host: ${config.host}, 
+        current ENV: ${app.settings.env}`);
 });
 
