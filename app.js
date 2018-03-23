@@ -24,8 +24,7 @@ app.use(compression());
 app.use(express.static('./app/public'));
 
 // favicon
-// С этим чо то делать, после установки клин вебпак - срвер запускается раньше чем появляется дирректория
-// app.use(favicon('./app/public/images/favicon.ico'));
+app.use(favicon('./app/favicon.ico')); /* проблемы при сборке*/
 
 // logger
 app.use(logger(config.logger.format));
