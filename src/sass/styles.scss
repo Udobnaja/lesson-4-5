@@ -1,18 +1,14 @@
 @import 'vendors/normalize';
-
 @import 'abstracts/variables',
-        'abstracts/mixins';
-
+  'abstracts/mixins';
 @import 'base/base',
-        'base/helpers',
-        'base/spacing',
-        'base/typography';
-
+  'base/helpers',
+  'base/spacing',
+  'base/typography';
 @import 'layout/header',
-        'layout/footer',
-        'layout/container';
-
+  'layout/footer',
+  'layout/container';
 @import 'components/button',
-        'components/list',
-        'components/terminal',
-        'components/link';
+  'components/list',
+  'components/terminal',
+  'components/link';

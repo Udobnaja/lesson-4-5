@@ -1,5 +1,5 @@
 .btn,
-.button{
+.button {
   background-color: transparent;
   border-radius: $global-radius;
   border: 1px solid $border-color;
@@ -9,7 +9,7 @@
   font-size: inherit;
   font-weight: 100;
   height: 38px;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   line-height: 38px;
   margin-bottom: 1rem;
   padding: 0 30px;
@@ -17,16 +17,17 @@
   text-decoration: none;
   transition-duration: 200ms;
   white-space: nowrap;
+
   &:focus,
   &:hover {
     @include hover-style;
   }
 
-  &:focus{
-    outline: .1rem dotted $gray;
+  &:focus {
+    outline: 0.1rem dotted $gray;
   }
 
-  &:active{
+  &:active {
     background-color: $color-primary;
   }
 
@@ -43,7 +44,7 @@
     }
   }
 
-  &_no_offset{
+  &_no_offset {
     margin: 0;
   }
 }

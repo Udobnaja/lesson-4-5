@@ -1,8 +1,9 @@
-.terminal{
-  &__box{
+.terminal {
+  &__box {
     position: relative;
     display: block;
-    &:before{
+
+    &::before {
       content: '> ';
       display: block;
       color: $white;
@@ -13,7 +14,7 @@
     }
   }
 
-  &__input{
+  &__input {
     display: block;
     width: 100%;
     background-color: #272727;

@@ -1,14 +1,16 @@
-.list{
+.list {
   $list: &;
-  &_group{
+
+  &_group {
     list-style-type: none;
     border-bottom-color: $gray;
 
-    #{$list}__item{
+    #{$list}__item {
       position: relative;
       border: 1px solid $gray-light;
       padding: 8px 10px;
-      &_flex{
+
+      &_flex {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -16,15 +18,16 @@
     }
   }
 
-  &_dom{
+  &_dom {
     list-style-type: none;
     padding: 0 0 0 1rem;
 
-    #{$list}__item{
+    #{$list}__item {
       position: relative;
       font-size: 1.5rem;
-      &:first-child:before,
-      &:not(:last-child):after{
+
+      &:first-child::before,
+      &:not(:last-child)::after {
         position: absolute;
         border-color: $gray-light;
         top: 0;
@@ -34,17 +37,18 @@
         content: '';
         border-width: 0.1rem;
       }
-      &:first-child:before {
+
+      &:first-child::before {
         height: 1rem;
       }
 
-      &:not(:last-child):after {
+      &:not(:last-child)::after {
         bottom: -2.2rem;
       }
-  }
+    }
 
-  &__item {
+    &__item {
 
-  }
+    }
   }
 }

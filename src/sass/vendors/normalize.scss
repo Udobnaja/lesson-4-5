@@ -11,12 +11,16 @@
 
 html {
   font-family: sans-serif;
+
   /* 1 */
   line-height: 1.15;
+
   /* 2 */
   -ms-text-size-adjust: 100%;
+
   /* 3 */
   -webkit-text-size-adjust: 100%;
+
   /* 3 */
 }
 
@@ -77,10 +81,13 @@ figure {
 
 hr {
   box-sizing: content-box;
+
   /* 1 */
   height: 0;
+
   /* 1 */
   overflow: visible;
+
   /* 2 */
 }
 
@@ -91,8 +98,10 @@ hr {
 
 pre {
   font-family: monospace, monospace;
+
   /* 1 */
   font-size: 1em;
+
   /* 2 */
 }
 
@@ -106,8 +115,10 @@ pre {
 
 a {
   background-color: transparent;
+
   /* 1 */
   -webkit-text-decoration-skip: objects;
+
   /* 2 */
   &:active, &:hover {
     outline-width: 0;
@@ -126,10 +137,13 @@ a {
 
 abbr[title] {
   border-bottom: none;
+
   /* 1 */
   text-decoration: underline;
+
   /* 2 */
   text-decoration: underline dotted;
+
   /* 2 */
 }
 
@@ -156,8 +170,10 @@ b, strong {
 
 code, kbd, samp {
   font-family: monospace, monospace;
+
   /* 1 */
   font-size: 1em;
+
   /* 2 */
 }
 
@@ -252,8 +268,10 @@ svg:not(:root) {
 
 button, input, optgroup, select, textarea {
   font: inherit;
+
   /* 1 */
   margin: 0;
+
   /* 2 */
 }
 
@@ -293,6 +311,7 @@ button, select {
 
 button, html [type="button"], [type="reset"], [type="submit"] {
   -webkit-appearance: button;
+
   /* 2 */
 }
 
@@ -332,16 +351,22 @@ fieldset {
 
 legend {
   box-sizing: border-box;
+
   /* 1 */
   color: inherit;
+
   /* 2 */
   display: table;
+
   /* 1 */
   max-width: 100%;
+
   /* 1 */
   padding: 0;
+
   /* 3 */
   white-space: normal;
+
   /* 1 */
 }
 
@@ -352,8 +377,10 @@ legend {
 
 progress {
   display: inline-block;
+
   /* 1 */
   vertical-align: baseline;
+
   /* 2 */
 }
 
@@ -372,8 +399,10 @@ textarea {
 
 [type="checkbox"], [type="radio"] {
   box-sizing: border-box;
+
   /* 1 */
   padding: 0;
+
   /* 2 */
 }
 
@@ -394,8 +423,10 @@ textarea {
 
 [type="search"] {
   -webkit-appearance: textfield;
+
   /* 1 */
   outline-offset: -2px;
+
   /* 2 */
   &::-webkit-search-cancel-button, &::-webkit-search-decoration {
     -webkit-appearance: none;
@@ -413,8 +444,10 @@ textarea {
 
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
+
   /* 1 */
   font: inherit;
+
   /* 2 */
 }
 
