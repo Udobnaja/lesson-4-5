@@ -7,7 +7,7 @@ block content
             - var deep = ''
             each crumb in breadcrumbs
                 - deep += '/' + crumb
-                a(href= '/path/' + branch  + deep)= crumb + '/'
+                a(href= '/ls-tree/' + branch  + deep)= crumb + '/'
     else
         p /
 
@@ -18,4 +18,4 @@ block content
                     if (file.type == 'blob')
                         a(href= '/blob/' + branch + path + file.hash)= file.name
                     else
-                        a(href= '/path/' + branch + path + file.name)= file.name
+                        a(href= '/ls-tree/' + branch + path + file.name)= file.name

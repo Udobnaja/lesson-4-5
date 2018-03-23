@@ -7,8 +7,8 @@ block content
             - var deep = ''
             each crumb in breadcrumbs
                 - deep += '/' + crumb
-                a(href= '/path/' + branch + deep)= crumb + '/'
+                a(href= '/ls-tree/' + branch + deep)= crumb + '/'
     else
-        a(href= '/path/' + branch) /
+        a(href= '/ls-tree/' + branch) /
     pre
         =body

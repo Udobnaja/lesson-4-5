@@ -24,7 +24,7 @@ exports.show_dir = (req, res) => {
             files.pop();
 
 
-            res.render('file-list', {
+            res.render('ls-tree', {
                 files: files,
                 branch: req.params.branch,
                 path,
@@ -32,6 +32,6 @@ exports.show_dir = (req, res) => {
             });
 
         }).catch((error) => {
-            renderError({res, router: 'file-list', error})
+            renderError({res, router: 'ls-tree', error})
         });
 };
