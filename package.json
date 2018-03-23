@@ -31,7 +31,8 @@
     "morgan": "^1.9.0",
     "npm-run-all": "^4.1.2",
     "pug": "^2.0.1",
-    "serve-favicon": "^2.4.5"
+    "serve-favicon": "^2.4.5",
+    "stylelint-order": "^0.8.1"
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",

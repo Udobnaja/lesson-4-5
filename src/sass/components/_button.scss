@@ -1,22 +1,22 @@
 .btn,
 .button {
-  background-color: transparent;
-  border-radius: $global-radius;
-  border: 1px solid $border-color;
-  color: $color-secondary;
-  cursor: pointer;
   display: inline-block;
-  font-size: inherit;
-  font-weight: 100;
   height: 38px;
-  letter-spacing: 0.1rem;
-  line-height: 38px;
   margin-bottom: 1rem;
   padding: 0 30px;
-  text-align: center;
-  text-decoration: none;
+  cursor: pointer;
   transition-duration: 200ms;
+  text-align: center;
   white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+  color: $color-secondary;
+  border: 1px solid $border-color;
+  border-radius: $global-radius;
+  background-color: transparent;
+  font-size: inherit;
+  font-weight: 100;
+  line-height: 38px;
 
   &:focus,
   &:hover {
@@ -33,14 +33,14 @@
 
   &_primary {
     color: $white;
-    background-color: $color-primary;
     border-color: $color-primary;
+    background-color: $color-primary;
 
     &:focus,
     &:hover {
       color: $white;
-      background-color: darken($color-primary, 10%);
       border-color: $color-primary;
+      background-color: darken($color-primary, 10%);
     }
   }
 

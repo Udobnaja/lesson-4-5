@@ -7,20 +7,20 @@
 
     #{$list}__item {
       position: relative;
-      border: 1px solid $gray-light;
       padding: 8px 10px;
+      border: 1px solid $gray-light;
 
       &_flex {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
       }
     }
   }
 
   &_dom {
-    list-style-type: none;
     padding: 0 0 0 1rem;
+    list-style-type: none;
 
     #{$list}__item {
       position: relative;
@@ -29,13 +29,13 @@
       &:first-child::before,
       &:not(:last-child)::after {
         position: absolute;
-        border-color: $gray-light;
         top: 0;
         left: -1rem;
         width: 0.8rem;
-        border-style: none none solid solid;
         content: '';
         border-width: 0.1rem;
+        border-style: none none solid solid;
+        border-color: $gray-light;
       }
 
       &:first-child::before {

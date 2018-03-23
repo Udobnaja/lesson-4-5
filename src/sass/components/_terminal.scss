@@ -4,21 +4,21 @@
     display: block;
 
     &::before {
-      content: '> ';
-      display: block;
-      color: $white;
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
       left: 10px;
+      display: block;
+      content: '> ';
+      transform: translateY(-50%);
+      color: $white;
     }
   }
 
   &__input {
     display: block;
     width: 100%;
-    background-color: #272727;
-    color: $white;
     padding-left: 30px;
+    color: $white;
+    background-color: #272727;
   }
 }
