@@ -12,7 +12,8 @@
     "postintall": "echo \" Postinstall command not found\"",
     "build": "echo \" Build/webpack command not found\"",
     "postbuild": "echo \" Prebuild command not found\"",
-    "postversion": "echo \" Publish command not found\""
+    "postversion": "echo \" Publish command not found\"",
+    "pretest": "eslint --fix --ignore-path .gitignore ."
   },
   "author": "Udobnaja",
   "license": "ISC",
@@ -48,6 +49,7 @@
     "npm": "^5.7.1",
     "postcss-loader": "^2.1.2",
     "sass-loader": "^6.0.7",
+    "scss-lint": "0.0.0",
     "style-loader": "^0.20.3",
     "url-loader": "^1.0.1",
     "webpack": "^4.1.1",
