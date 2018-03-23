@@ -24,7 +24,7 @@ app.use(compression());
 app.use(express.static('./app/public'));
 
 // favicon
-app.use(favicon('./app/favicon.ico')); /* проблемы при сборке*/
+app.use(favicon(__dirname + '/app/public/images/favicon/favicon.ico'));
 
 // logger
 app.use(logger(config.logger.format));

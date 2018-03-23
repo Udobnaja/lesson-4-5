@@ -1,5 +1,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
@@ -15,6 +17,7 @@ module.exports = {
     output: {
         path: DIST_DIR,
     },
+    watch: !isProduction,
     module: {
         rules: [
             {
@@ -32,7 +35,7 @@ module.exports = {
                             options: {
                                 minimize: true,
                                 sourceMap: true,
-                                options: {minimize: isProduction}
+                                minimize: isProduction,
                             }
                         },
                         {
@@ -62,7 +65,13 @@ module.exports = {
         new CleanWebpackPlugin(['app/public']),
         new ExtractTextPlugin({
             filename: './[name].css'
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: ('src/images/favicon/*.ico'),
+                to: 'images/favicon/[name].[ext]'
+            },
+        ])
     ],
-    devtool: 'source-map'
+    devtool: isProduction ? false : 'source-map'
 };
