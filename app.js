@@ -14,20 +14,11 @@ const errorhandler = require("errorhandler");
 const config = require('./app/config');
 const isProduction = process.env.NODE_ENV === 'production';
 
-// using middlewares from middlewares directory
-
-// const middlewares = fs.readdirSync(path.join(__dirname, 'middlewares')).sort();
-//
-// middlewares.forEach((middleware) => {
-//     app.use(require('./middlewares/' + middleware));
-// });
-
 // Using middlewares
 // compression, os, cors middlewares  - maybe latter
 
 // favicon
 // app.use(favicon(path.join(__dirname, 'app/public/images', 'favicon.ico')));
-
 
 // static
 app.use(express.static('./app/public'));

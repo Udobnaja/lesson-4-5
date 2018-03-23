@@ -1,4 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
@@ -6,8 +8,6 @@ const path = require('path');
 const DIST_DIR = path.join(__dirname, 'app/public');
 
 // const NodemonBrowsersyncPlugin = require('nodemon-browsersync-webpack-plugin');
-
-// позже, clean, fonts, images, copy
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -23,7 +23,6 @@ module.exports = {
                 exclude: [/node_modules/],
                 use: ['babel-loader']
             },
-
             {
                 test:/\.(s*)css$/,
                 use: ExtractTextPlugin.extract({
@@ -61,9 +60,16 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(['app/public']),
         new ExtractTextPlugin({
             filename:'./[name].css'
         }),
+        new CopyWebpackPlugin([
+            {
+                from: ('src/images/favicon/*.ico'),
+                to: 'images/favicon/[name].[ext]'
+            },
+        ])
     ],
     devtool : "source-map"
 };

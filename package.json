@@ -34,6 +34,8 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.23.6",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.0",
     "eslint-config-yandex": "^1.0.6",
