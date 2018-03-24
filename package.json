@@ -15,7 +15,8 @@
     "lint:sass": "stylelint **/*.scss --syntax scss",
     "lint:fix": "eslint --fix --ignore-path .gitignore . && stylelint **/*.scss --syntax scss --fix",
     "build": "NODE_ENV=production webpack",
-    "build:watch": " webpack",
+    "build:watch": "webpack",
+    "clone:repo": "git clone --mirror https://github.com/Udobnaja/lesson-4-5.git ./app/git/",
     "clean": "rimraf app/public"
   },
   "pre-commit": [
