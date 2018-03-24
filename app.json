@@ -1,20 +1,6 @@
 {
   "name": "lesson-4-5",
-  "scripts": {
-  },
-  "env": {
-  },
-  "formation": {
-    "web": {
-      "quantity": 1
-    }
-  },
-  "addons": [
-
-  ],
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    }
-  ]
+  "description": "Node.js, infrastructure",
+  "repository": "https://github.com/Udobnaja/lesson-4-5.git",
+  "keywords": ["node", "express", "static", "tests", "infrastructure"]
 }

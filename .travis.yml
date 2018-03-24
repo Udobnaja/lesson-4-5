@@ -1,11 +1,18 @@
 sudo: false
+dist: trusty
 language: node_js
 node_js:
 - node
 - 8.4.0
+env:
+- NODE_ENV=$NODE_ENV
+services:
+  - docker
 cache:
   directories:
   - node_modules
+jobs:
+  include:
 script:
 - npm run test
 - npm run build
