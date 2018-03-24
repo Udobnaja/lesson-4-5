@@ -11,8 +11,6 @@ services:
 cache:
   directories:
   - node_modules
-jobs:
-  include:
 script:
 - npm run test
 - npm run build
