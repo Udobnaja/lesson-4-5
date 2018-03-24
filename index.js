@@ -5,7 +5,7 @@ const compression = require('compression');
 const path = require('path');
 const fs = require('fs');
 
-// define middle wares
+// // define middle wares
 
 const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
@@ -24,11 +24,10 @@ app.use(compression());
 app.use(express.static('./app/public'));
 
 // favicon
-app.use(favicon(__dirname + '/app/public/images/favicon/favicon.ico'));
+// app.use(favicon('./app/public/images/favicon/favicon.ico'));
 
 // logger
 app.use(logger(config.logger.format));
-
 
 // body-parser
 app.use(bodyParser.urlencoded({extended: true}));
@@ -70,10 +69,7 @@ app.use((req, res, next) => {
     });
 });
 
-app.listen(config.port, config.host, () => {
-    console.log(`
-        App listening on port ${config.port}, 
-        host: ${config.host}, 
-        current ENV: ${app.settings.env}`);
+app.listen(config.port, () => {
+    console.log(`listen port ${config.port}`);
 });
 

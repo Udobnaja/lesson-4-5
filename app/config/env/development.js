@@ -1,5 +1,5 @@
 const config = {
-    port: 8881,
+    port: 8081,
     logger: {
         level: 'debug',
         format: 'combined'

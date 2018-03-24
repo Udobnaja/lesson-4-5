@@ -4,15 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all -p build watch:server",
-    "watch:server": "nodemon -e scss,pug,js --watch app app.js",
+    "start": "npm-run-all -s build:prod server",
+    "start:dev": "npm-run-all -p build watch:server",
+    "server": "node index.js",
+    "watch:server": "nodemon -e scss,pug,js --watch index.js",
     "pretest": "npm run lint:eslint && npm run lint:sass",
     "test": "echo \"Error: no test specified\" && exit 0",
     "lint:eslint": "eslint --fix --ignore-path .gitignore .",
     "lint:sass": "stylelint **/*.scss --syntax scss --fix ",
     "build": "webpack",
     "build:prod": "NODE_ENV=production webpack",
-    "prettier": "prettier **/*.js",
     "clean": "rimraf app/public"
   },
   "pre-commit": [
