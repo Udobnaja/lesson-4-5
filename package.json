@@ -10,8 +10,9 @@
     "watch:server": "nodemon -e scss,pug,js --watch index.js",
     "pretest": "npm run lint:eslint && npm run lint:sass",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "lint:eslint": "eslint --fix --ignore-path .gitignore .",
-    "lint:sass": "stylelint **/*.scss --syntax scss --fix ",
+    "lint:eslint": "eslint --ignore-path .gitignore .",
+    "lint:sass": "stylelint **/*.scss --syntax scss",
+    "lint:fix": "eslint --fix --ignore-path .gitignore . && stylelint **/*.scss --syntax scss --fix",
     "build": "webpack",
     "build:prod": "NODE_ENV=production webpack",
     "clean": "rimraf app/public"
