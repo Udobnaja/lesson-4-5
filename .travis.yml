@@ -6,15 +6,6 @@ node_js:
 cache:
   directories:
   - node_modules
-jobs:
-  include:
-    - stage: build docker image
-      script:
-        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-        - docker build -t $DOCKER_USERNAME/local-git .
-        - docker images
-        - docker push $DOCKER_USERNAME/local-git
-    - stage: test
-      script: docker run --rm $DOCKER_USERNAME/local-git
-    - script:
-        - docker run --rm $DOCKER_USERNAME/local-git
+script:
+- npm run test
+- npm run build
