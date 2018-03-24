@@ -3,7 +3,7 @@ FROM node:8.4.0
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-RUN npm clone:repo
+RUN npm clone
 COPY . .
 EXPOSE 8082
 CMD [ "npm", "start" ]
