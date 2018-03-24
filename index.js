@@ -24,7 +24,9 @@ app.use(compression());
 app.use(express.static('./app/public'));
 
 // favicon
-// app.use(favicon('./app/public/images/favicon/favicon.ico'));
+if (isProduction) {
+    app.use(favicon('./app/public/images/favicon/favicon.ico'));
+}
 
 // logger
 app.use(logger(config.logger.format));
