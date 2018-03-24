@@ -18,8 +18,6 @@ jobs:
         app: still-inlet-21388
         api_key:
             secure: $HEROKU_AUTH_TOKEN
-        on:
-            repo: https://github.com/Udobnaja/lesson-4-5
     - stage: deploy to production
       script: skip
       deploy:
