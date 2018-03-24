@@ -60,7 +60,9 @@ app.use((req, res, next) => {
     next(err);
 }).use((err, req, res, next) => {
     if (!isProduction) {
-        console.log(err.stack);
+        if (err) {
+            console.error(err.stack);
+        }
     }
 
     res.status(err.status || 500);
