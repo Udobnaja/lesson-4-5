@@ -4,7 +4,7 @@ const config = {
     port: process.env.PORT || 3000,
     host: 'localhost',
     setting: {
-        path,
+        path: process.env.PATH || path,
         exec: {
             options: {
                 cwd: path,
