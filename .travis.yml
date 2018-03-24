@@ -17,7 +17,7 @@ jobs:
         provider: heroku
         app: still-inlet-21388
         api_key:
-            secure: A7KA9SoDFNub/Bip0u210xgyMScDbK3xopK2AyrlFXakJENaR49PZ6Rqp35jeNkiYHB6lJ1U6rkz0yu7Ae4/12WmLydA8aoYWIj83Iv5RJQoOAuTL9cL6fwvLWDVc/NqVQoFxET9e29VljG4+lK7kzuAG8ALKb9D94Q1YEQsMgVSJUosOtVyoVFQemMBka79p/GycvWXKuEBUWpatcjez0KIPuc8VmntYgTPydWEEbfpTe7Aodm2LSZ/i+ZERx9qtycGxZrV//3f60ifNnE7tYI607M/isSOGIy7NIK7fdffF9875ph2k18pE6YU1sk1av9kjyt5YDBGrKkXUwkgh+obqneC6O3WYAp/wh0JrYfRPm66NLGOSIMi895MbM0RDGfyhvzkecNqUfvloN+jUCy10FydCtMZSTQvRWJ6PtFkaNoKYaVPKrfJm3LnmnjHqoKPi76UYKxZRkP4kenheQDhmjZeht5V7RIDp97+Us6wMZMKhPS/m3K2t54KXDxnCX/KBiQIUisufZP4KFY0SxNu0ZeTFtOeZX0XqFhYiqgGCTeyTJNuximt+ennuXFy0eutUirp0UQghy9KvQWh60nzI9Fmnth/lkMk3w4fmUWrunAWKqWZiGgDGx3fxjSlnzxWhKLjCeANJFOLwVhXO0PayltszCA8EfehWwKCjNE=
+            secure: $HEROKU_AUTH_TOKEN
     - stage: deploy to production
       script: skip
       deploy:
