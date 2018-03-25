@@ -4,7 +4,7 @@ const buildFlatTree = require('../../app/helpers/buildFlatTree');
 const stubPath = '/app/tree/branch/file.js';
 
 describe('buildFlatTree helper function', () => {
-    it('Should return object from string path', () => {
+    it('Should return object with subdirectories and children from string path', () => {
         const tree = buildFlatTree(stubPath, stubPath);
         expect(tree).to.deep.include({
             dir: '',
