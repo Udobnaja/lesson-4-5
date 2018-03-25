@@ -4,7 +4,7 @@ const config = {
     port: process.env.PORT || 3000,
     host: '0.0.0.0',
     setting: {
-        path: (process.env.NODE_ENV !== 'production') ? path : process.env.REPO_PATH || './app/git' ,
+        path: './app/git' ,
         exec: {
             options: {
                 cwd: path,
