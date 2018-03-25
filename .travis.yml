@@ -4,7 +4,7 @@ node_js:
 - node
 - 8.4.0
 env:
-  -TRAVIS_SECURE_ENV_VARS:true
+  -TRAVIS_SECURE_ENV_VARS=true
 cache:
   directories:
   - node_modules
