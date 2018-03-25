@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const buildFlatTree = require('../../app/helpers/buildFlatTree');
+const buildFlatTree = require('../../../app/helpers/buildFlatTree');
 const stubPath = '/app/tree/branch/file.js';
 const expectTree = {
     dir: '',

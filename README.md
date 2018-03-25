@@ -6,6 +6,6 @@
 
 [README Node JS](./README.nodeJS.md)
 
-[README Тесты](./README.test)
+[README Тесты](./README.test.md)
 
 [STAGING DEMO](https://still-inlet-21388.herokuapp.com/branch) 
