@@ -1,13 +1,13 @@
-const path = process.cwd();
+const path = (process.env.NODE_ENV !== 'production') ? path : path + '/app/git/';
 
 const config = {
     port: process.env.PORT || 3000,
     host: '0.0.0.0',
     setting: {
-        path: (process.env.NODE_ENV !== 'production') ? path : path + '/app/git' ,
+        path ,
         exec: {
             options: {
-                cwd: (process.env.NODE_ENV !== 'production') ? path : process.env.REPO_PATH || './app/git',
+                cwd: path,
                 maxBuffer: 200*1024
             }
         },
