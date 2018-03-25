@@ -1,7 +1,7 @@
-const renderError = require('../utils/renderError');
+const renderError = require('../helpers/renderError');
 const config = require('../config');
 const options = config.setting.exec.options;
-const exec = require('../utils/exec');
+const exec = require('../utils/child_process/exec');
 const buildHierarchy = require('../helpers/buildHierarchy');
 
 exports.renderTree = (req, res) => {

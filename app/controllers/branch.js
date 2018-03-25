@@ -1,8 +1,8 @@
-const renderError = require('../utils/renderError');
+const renderError = require('../helpers/renderError');
 const config = require('../config');
 const options = config.setting.exec.options;
-const readDir = require('../utils/readDir');
-const exec = require('../utils/exec');
+const readDir = require('../utils/fs/readdir');
+const exec = require('../utils/child_process/exec');
 
 exports.renderBranchList = (req, res) => {
     readDir(`${options.cwd}/${config.setting.git}refs/heads/`)

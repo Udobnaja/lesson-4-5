@@ -1,5 +1,5 @@
-const exec = require('../utils/exec');
-const renderError = require('../utils/renderError');
+const exec = require('../utils/child_process/exec');
+const renderError = require('../helpers/renderError');
 const config = require('../config');
 const options = config.setting.exec.options;
 
