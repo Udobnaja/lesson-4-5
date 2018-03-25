@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm install
 RUN npm run clone
 COPY . .
-EXPOSE 8082
+EXPOSE ${PORT}
 CMD [ "npm", "start" ]
 
 
