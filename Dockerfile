@@ -3,5 +3,5 @@ WORKDIR /app
 
 COPY . .
 RUN npm install
-RUN npm clone
+RUN npm run clone
 CMD ["npm", "start"]
