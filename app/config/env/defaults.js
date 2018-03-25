@@ -1,6 +1,6 @@
 const isRepoPath = process.env.REPO_PATH;
 const path = process.cwd();
-const git = (isRepoPath) ? '': '.git/';
+const git = '.git/';
 
 const config = {
     port: process.env.PORT || 3000,
