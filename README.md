@@ -2,9 +2,9 @@
 
 # Инфраструктура / Node.js / Тесты
 
-[README Инфраструктура](./README.infrastructure)
+[README Инфраструктура](./README.infrastructure.md)
 
-[README Node JS](./README.nodeJS)
+[README Node JS](./README.nodeJS.md)
 
 [README Тесты](./README.test)
 
