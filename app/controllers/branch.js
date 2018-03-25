@@ -5,7 +5,7 @@ const readDir = require('../utils/readDir');
 const exec = require('../utils/exec');
 
 exports.renderBranchList = (req, res) => {
-    readDir(`${options.cwd}/.git/refs/heads/`)
+    readDir(`${options.cwd}/${config.setting.git}refs/heads/`)
         .then((branches) => {
             res.render('branch-list',{
                 branches
