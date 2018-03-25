@@ -3,5 +3,5 @@ WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm run clone
-EXPOSE 8082
+EXPOSE ${PORT}
 CMD ["npm", "start"]
