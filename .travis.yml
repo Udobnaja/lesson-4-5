@@ -19,7 +19,7 @@ jobs:
         provider: heroku
         app: still-inlet-21388
         api_key:
-            secure: HEROKU_AUTH_TOKEN
+            secure: 'HEROKU_AUTH_TOKEN'
     - stage: deploy to production
       script: skip
       deploy:
