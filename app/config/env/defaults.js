@@ -1,6 +1,5 @@
 const isRepoPath = process.env.REPO_PATH;
 const path = process.cwd();
-const cwd = (isRepoPath) ? process.cwd() + isRepoPath : process.cwd();
 const git = (isRepoPath) ? '': '.git/';
 
 const config = {
@@ -11,7 +10,7 @@ const config = {
         git,
         exec: {
             options: {
-                cwd,
+                cwd: path,
                 maxBuffer: 200*1024
             }
         },
