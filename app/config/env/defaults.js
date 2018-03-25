@@ -1,7 +1,7 @@
-const isProduction = (process.env.NODE_ENV === 'production');
+const isRepoPath = process.env.REPO_PATH;
 const path = process.cwd();
-const cwd = (process.env.REPO_PATH) ? process.cwd() + process.env.REPO_PATH : process.cwd();
-const git = (process.env.REPO_PATH) ? '': '.git/';
+const cwd = (isRepoPath) ? process.cwd() + isRepoPath : process.cwd();
+const git = (isRepoPath) ? '': '.git/';
 
 const config = {
     port: process.env.PORT || 3000,
@@ -15,9 +15,6 @@ const config = {
                 maxBuffer: 200*1024
             }
         },
-        date: {
-            format: '%ar' /* /%ad, %aD, %aD, %at/*/
-        }
     },
     logger: {
         level: 'info',
