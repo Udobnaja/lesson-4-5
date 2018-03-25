@@ -73,7 +73,7 @@ app.use((req, res, next) => {
     });
 });
 
-app.listen(config.port, () => {
+app.listen(config.port, config.host, () => {
     console.log(`listen port ${config.port}`);
 });
 
