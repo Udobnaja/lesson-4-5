@@ -3,19 +3,19 @@ extends layouts/default.pug
 block content
     h3 Files Structure
     if breadcrumbs
-        p
+        p.breadcrumbs
             - var deep = ''
             each crumb in breadcrumbs
                 - deep += '/' + crumb
                 a(href= '/ls-tree/' + branch  + deep)= crumb + '/'
     else
-        p /
+        p.breadcrumbs /
 
     if files
-        ul.list.list_group
+        ul.list.list_group.tree-list
             each file in files
-                li.list__item
+                li.list__item.tree-list__item
                     if (file.type == 'blob')
-                        a(href= '/blob/' + branch + path + file.hash)= file.name
+                        a.list__link.tree-list__item-blob(href= '/blob/' + branch + path + file.hash)= file.name
                     else
-                        a(href= '/ls-tree/' + branch + path + file.name)= file.name
+                        a.list__link.tree-list__item-folder(href= '/ls-tree/' + branch + path + file.name)= file.name

@@ -10,5 +10,5 @@ block content
                 a(href= '/ls-tree/' + branch + deep)= crumb + '/'
     else
         a(href= '/ls-tree/' + branch) /
-    pre(style="border: 1px solid #a8a8a8")
+    pre.blob(style="border: 1px solid #a8a8a8")
         =body
