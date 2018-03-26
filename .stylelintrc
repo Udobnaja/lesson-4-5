@@ -197,5 +197,5 @@
     "no-duplicate-selectors": null,
     "block-no-empty": null
   },
-  "ignoreFiles": "src/sass/vendors/*"
+  "ignoreFiles": "client/sass/vendors/*"
 }

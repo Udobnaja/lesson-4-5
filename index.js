@@ -12,7 +12,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const errorhandler = require('errorhandler');
 
-const config = require('./app/config');
+const config = require('./server/config');
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Using middlewares
@@ -21,11 +21,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 // static
 app.use(compression());
-app.use(express.static('./app/public'));
+app.use(express.static('./server/public'));
 
 // favicon
 if (isProduction) {
-    app.use(favicon('./app/public/images/favicon/favicon.ico'));
+    app.use(favicon('./server/public/images/favicon/favicon.ico'));
 }
 
 // logger
@@ -41,18 +41,18 @@ if (!isProduction) {
 }
 
 // templates
-app.set('views', './app/templates');
+app.set('views', './server/templates');
 app.set('view engine', 'pug');
 
 // routing
 
 app
-    .use(require('./app/routes/'))
-    .use(require('./app/routes/term'))
-    .use(require('./app/routes/branch'))
-    .use(require('./app/routes/tree'))
-    .use(require('./app/routes/blob'))
-    .use(require('./app/routes/ls-tree'));
+    .use(require('./server/routes/'))
+    .use(require('./server/routes/term'))
+    .use(require('./server/routes/branch'))
+    .use(require('./server/routes/tree'))
+    .use(require('./server/routes/blob'))
+    .use(require('./server/routes/ls-tree'));
 // 404
 app.use((req, res, next) => {
     const err = new Error('Not Found');

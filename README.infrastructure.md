@@ -30,7 +30,7 @@
 ## Dockerfile
 
 Создать image `docker build -t udobnaja/local-git .` <br>
-Запустить `docker run --rm -it -p 8082:3000 --name udobnaja/local-git`
+Запустить `docker run -it --rm -p 8082:3000 --name udobnaja/local-git`
 
 Изначально собирала по этой статье https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 Но  опять же не знаешь, правильно ли это

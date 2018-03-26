@@ -1,4 +1,4 @@
-const config = require('./app/config/');
+const config = require('./server/config/');
 
 module.exports = {
     baseUrl: `http://${config.host}:${config.port}`,
