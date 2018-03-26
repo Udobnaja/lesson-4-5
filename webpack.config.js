@@ -6,7 +6,7 @@ const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
 const path = require('path');
-const DIST_DIR = path.join(__dirname, 'server/public');
+const DIST_DIR = path.join(__dirname, '/public');
 
 // const NodemonBrowsersyncPlugin = require('nodemon-browsersync-webpack-plugin');
 
@@ -63,7 +63,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['server/public']),
+        new CleanWebpackPlugin([DIST_DIR]),
         new ExtractTextPlugin({
             filename: './[name].css'
         }),

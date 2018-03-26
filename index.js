@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const compression = require('compression');
+const publicDir = '/public';
 
 const path = require('path');
 const fs = require('fs');
@@ -21,11 +22,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 // static
 app.use(compression());
-app.use(express.static('./server/public'));
+app.use(express.static(`.${publicDir}`));
 
 // favicon
 if (isProduction) {
-    app.use(favicon('./server/public/images/favicon/favicon.ico'));
+    app.use(favicon(`.${publicDir}/images/favicon/favicon.ico`));
 }
 
 // logger
