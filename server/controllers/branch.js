@@ -4,9 +4,10 @@ const {defaultBranch} = config;
 const options = config.setting.exec.options;
 const readDir = require('../utils/fs/readdir');
 const exec = require('../utils/child_process/exec');
+const {getBranchList} = require('../api/index');
 
 exports.renderBranchList = (req, res) => {
-    readDir(`${options.cwd}/${config.setting.git}refs/heads/`)
+    getBranchList()
         .then((branches) => {
             res.render('branch-list',{
                 branches,
