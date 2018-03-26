@@ -1,5 +1,5 @@
 const chai = require('chai');
-const config = require('../../server/config');
+const {defaultBranch, host, port} = require('../../server/config');
 const assert = chai.assert;
 //
 describe('Router / or /branch', () => {
@@ -17,7 +17,7 @@ describe('Router / or /branch', () => {
             .then((exists) => assert.isTrue(exists, 'Branch list exist'));
     });
 
-    describe(`Default Branch: ${config.defaultBranch}`, () => {
+    describe(`Default Branch: ${defaultBranch}`, () => {
         it('expected Default Branch class', function () {
             return this.browser
                 .url('/')
@@ -25,20 +25,32 @@ describe('Router / or /branch', () => {
                 .then((exists) => assert.isTrue(exists, 'Default Branch exist'));
         });
 
-        it(`Default Branch should be equal ${config.defaultBranch}`, function () {
+        it(`Default Branch should be equal ${defaultBranch}`, function () {
             return this.browser
                 .url('/')
                 .getText('.branch-list__item_default .branch-list__link')
-                .then((name) => {
-                    return assert.equal(name, config.defaultBranch);
-                });
+                .then((name) => assert.equal(name, defaultBranch));
         });
     });
 });
-//
-// describe('Router /branch:name', () => {
-//
-// });
+
+describe(`Router /branch/${defaultBranch}`, () => {
+    it('Click on the hash redirect to commit files structure', async function () {
+        let element = this.browser
+            .url(`/branch/${defaultBranch}`)
+            .$('.list__item')
+            .$('a');
+        let hash = '';
+
+        return element.getText().then((text) => {
+            hash = text;
+            return element;
+        }).click()
+            .getUrl()
+            .then((url) => assert.equal(url, `http://${host}:${port}/ls-tree/${hash}`));
+    });
+
+});
 //
 // describe('Router /ls-tree/:branch', () => {
 //
