@@ -5,8 +5,9 @@ block content
     if branches
         ul.list.list_group.branch-list
             each branch in branches
-                li.list__item.list__item_flex
-                    a(href='/branch/' + branch )= branch
+                - var isDefaultBranch = defaultBranch == branch;
+                li.list__item.list__item_flex.branch-list__item(class=isDefaultBranch ? 'branch-list__item_default' : '')
+                    a.branch-list__link(href='/branch/' + branch )= branch
                     div
                         a(href='/ls-tree/' + branch).button.button_no_offset Browse Files
                         a(href='/tree/' + branch + '/' + branch ).button.button_no_offset.button_primary Browse Tree

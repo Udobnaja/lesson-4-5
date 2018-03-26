@@ -6,6 +6,7 @@ const git = '.git/';
 const config = {
     port: process.env.PORT || 3000,
     host: '0.0.0.0',
+    defaultBranch: 'master',
     setting: {
         path,
         git,

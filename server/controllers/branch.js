@@ -1,5 +1,6 @@
 const renderError = require('../helpers/renderError');
 const config = require('../config');
+const {defaultBranch} = config;
 const options = config.setting.exec.options;
 const readDir = require('../utils/fs/readdir');
 const exec = require('../utils/child_process/exec');
@@ -8,7 +9,8 @@ exports.renderBranchList = (req, res) => {
     readDir(`${options.cwd}/${config.setting.git}refs/heads/`)
         .then((branches) => {
             res.render('branch-list',{
-                branches
+                branches,
+                defaultBranch,
             });
         }).catch((error) => {
             renderError({res, router: 'branch-list', error});
