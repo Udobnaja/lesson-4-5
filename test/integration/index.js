@@ -2,6 +2,8 @@ const chai = require('chai');
 const {defaultBranch, host, port} = require('../../server/config');
 const assert = chai.assert;
 
+const {blobHash, blobContent} = require('../fixtures/stubs');
+
 describe('Router / or /branch', () => {
     it('expected content of Page Title', function () {
         return this.browser
@@ -98,8 +100,6 @@ describe(`Router /branch/${defaultBranch}`, () => {
             .then((url) => assert.equal(url, `http://${host}:${port}/ls-tree/${stubHash}/`));
     });
 
-    const blobStub = '39076ea17a42f8747bddd7a7702c393177ef390b';
-
 
     it('Click on the File redirect to this File Page', function () {
         let element = this.browser
@@ -121,20 +121,19 @@ describe(`Router /branch/${defaultBranch}`, () => {
 
     it('Expected Blob content exist', function () {
         return this.browser
-            .url(`/blob/${stubHash}/blobStub`)
+            .url(`/blob/${stubHash}/${blobHash}`)
             .isExisting('.blob')
             .then((exists) => assert.isTrue(exists, 'Blob file exist'));
     });
 
     it('Correct Blob content', function () {
-        const content = 'PORT=\nSECRET_KEY=';
 
         return this.browser
-            .url(`/blob/${stubHash}/${blobStub}`)
+            .url(`/blob/${stubHash}/${blobHash}`)
             .$('.blob')
             .getText()
             .then((text) => {
-                return assert.equal(text,content);
+                return assert.equal(text,blobContent);
             });
     });
 
