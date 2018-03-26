@@ -2,7 +2,7 @@ const chai = require('chai');
 const {defaultBranch, host, port} = require('../../server/config');
 const assert = chai.assert;
 
-const {blobHash, blobContent} = require('../fixtures/stubs');
+const {blobHash, blobContent, stubHash, stubFolder, stubFolderContent} = require('../fixtures/stubs');
 
 describe('Router / or /branch', () => {
     it('expected content of Page Title', function () {
@@ -54,14 +54,11 @@ describe(`Router /branch/${defaultBranch}`, () => {
             .then((url) => assert.equal(url, `http://${host}:${port}/ls-tree/${hash}`));
     });
 
-    const stubHash = '415c4ecfcb85ceeee4d086cc60e88b0fcf2e3061';
-    const stubFolder = 'client';
-    const stumbFileFolder = ['images', 'index.js', 'sass'];
-
     it('Click on the Folder redirect to inner layout', function () {
         let element = this.browser
             .url(`/ls-tree/${stubHash}`)
             .$('.tree-list__item-folder');
+        let folder = '';
 
         return element
             .getText()
@@ -85,9 +82,7 @@ describe(`Router /branch/${defaultBranch}`, () => {
         return this.browser
             .url(`/ls-tree/${stubHash}/${stubFolder}`)
             .getText('.list__link')
-            .then((items) => {
-                return assert.deepEqual(items, stumbFileFolder, 'Contents are equal');
-            });
+            .then((items) => assert.deepEqual(items, stubFolderContent, 'Contents are equal'));
     });
 
     it('Click on the the breadcrumb return to dir', function () {
@@ -127,14 +122,11 @@ describe(`Router /branch/${defaultBranch}`, () => {
     });
 
     it('Correct Blob content', function () {
-
         return this.browser
             .url(`/blob/${stubHash}/${blobHash}`)
             .$('.blob')
             .getText()
-            .then((text) => {
-                return assert.equal(text,blobContent);
-            });
+            .then((text) => assert.equal(text,blobContent));
     });
 
 
