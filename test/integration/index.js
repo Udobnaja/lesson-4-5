@@ -6,9 +6,14 @@ describe('Router / or /branch', () => {
         return this.browser
             .url('/')
             .getTitle()
-            .then((title) => {
-                return assert.equal(title, 'Test Your Local Git');
-            });
+            .then((title) => assert.equal(title, 'Test Your Local Git'));
+    });
+
+    it('expected Branch List', function () {
+        return this.browser
+            .url('/')
+            .isExisting('.list.branch-list')
+            .then((exists) => assert.isTrue(exists, 'Branch list exist'));
     });
 });
 //

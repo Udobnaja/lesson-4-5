@@ -3,7 +3,7 @@ extends layouts/default.pug
 block content
     h3 Branches
     if branches
-        ul.list.list_group
+        ul.list.list_group.branch-list
             each branch in branches
                 li.list__item.list__item_flex
                     a(href='/branch/' + branch )= branch
