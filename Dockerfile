@@ -1,9 +1,10 @@
 FROM node:8.4.0
 WORKDIR /app
 
-COPY . .
-ENV PORT=3000
+COPY package*.json ./
 ENV NODE_ENV=development
 RUN npm install --quient
+COPY . .
 RUN npm run clone
-CMD npm start -- --port $PORT
+
+CMD ['npm', 'start']
