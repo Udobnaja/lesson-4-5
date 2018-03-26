@@ -24,7 +24,6 @@ const getCommitInfo = async ({hash}) => {
        Commit message: %s' ${hash}`, options);
 };
 
-
 const getFormattedCommitList = async ({branch}) => {
     return await getCommitsListHash({branch})
         .then((hashList) => {
