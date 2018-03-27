@@ -43,11 +43,31 @@ const getFormattedCommitList = async ({branch}) => {
         });
 };
 
+const getFileTree = async ({path}) => {
+    return await exec(`git ls-tree ${path} | awk '{print $2} {print $3} {print $4}'`, options);
+};
+
+const getFilesStructure = async ({path}) => {
+    return await getFileTree({path})
+        .then((objects) => {
+            let structure = objects.split('\n');
+            let files = [];
+
+            for (let i = 0; i < structure.length; i += 3) {
+                files.push({type: structure[i], hash: structure[i + 1], name: structure[i + 2]});
+            }
+
+            files.pop();
+            return files;
+        }).catch(e => e);
+};
+
 module.exports = {
     getFileContent,
     getBranchList,
     getCommitsListHash,
     getCommitInfo,
-    getFormattedCommitList
+    getFormattedCommitList,
+    getFilesStructure
 };
 
