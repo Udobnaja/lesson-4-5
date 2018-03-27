@@ -7,4 +7,4 @@ RUN npm install --quient
 COPY . .
 RUN npm run clone
 
-CMD ['npm', 'start']
+CMD ["node", "index.js"]
