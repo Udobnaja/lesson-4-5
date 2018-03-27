@@ -13,6 +13,7 @@ jobs:
   include:
     - stage: deploy to staging
       if: branch = master
+      if: type IN (push, pull_request)
       script: skip
       deploy: &heroku
         provider: heroku
