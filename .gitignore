@@ -16,7 +16,3 @@ node_modules/
 
 # Other files
 /.env
-/test/integration/data.js
-/test/integration/index.html
-/test/integration/report.min.css
-/test/integration/report.min.js
