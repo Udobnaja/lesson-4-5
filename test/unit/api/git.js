@@ -1,18 +1,18 @@
-const chai = require('chai');
-const expect = chai.expect;
-const assert = chai.assert;
+const {assert} = require('chai');
 const {
     getFileContent,
     getBranchList,
-    getCommitsListHash,
     getCommitInfo,
-    getFormattedCommitList
+    getFilesStructure
 } = require('../../../server/api/index');
-const {blobHash, blobContent, stubHash, stubCommitInfo} = require('../../fixtures/stubs');
-
-const stringFormatter = (string) => {
-    return string.split('\n').join(' ').trim();
-};
+const {
+    blobHash,
+    blobContent,
+    stubHash,
+    stubCommitInfo,
+    stubFolder,
+    stubFolderContent
+} = require('../../fixtures/stubs');
 
 describe('Get File Content via git command', () => {
     it('It should return string with file content', async () => {
@@ -32,5 +32,12 @@ describe('Get Commit Info by hash', () => {
     it('it should return string with correct information', async () => {
         const info = await getCommitInfo({hash: stubHash});
         assert.equal(info.split('\n')[1].trim(), stubCommitInfo.split('\n')[1].trim()); // потому что даты разные будут
+    });
+});
+
+describe('Get Files Structure', () => {
+    it('it should return ', async () => {
+        const structure = await getFilesStructure({path: `${stubHash}:./${stubFolder}`});
+        assert.deepEqual(structure.map(e => e.name), stubFolderContent, 'Contents are equal');
     });
 });
