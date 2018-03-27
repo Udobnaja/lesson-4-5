@@ -6,6 +6,5 @@ ENV NODE_ENV=development
 RUN npm install --quient
 COPY . .
 RUN npm run clone
-RUN npm run build
 
-CMD ["node", "index.js"]
+CMD npm run start
