@@ -144,7 +144,7 @@ describe('Страница /ls-tree/:hash/(*вложенные папки)?', ()
             .then((exists) => assert.isTrue(exists, 'Файловой структуры нет на странице'));
     });
 
-    it('В директории  /ls-tree/:hash/:folder содержится ожидаемы контент', function () {
+    it('В директории  /ls-tree/:hash/:folder содержится ожидаемый контент', function () {
         return this.browser
             .url(`/ls-tree/${stubHash}/${stubFolder}`)
             .getText('.list__link')

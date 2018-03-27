@@ -20,5 +20,13 @@ module.exports = {
         //         browserName: 'firefox'
         //     }
         // }
+    },
+    plugins: {
+        'html-reporter/hermione': {
+            enabled: true,
+            path: '/public/reporter',
+            defaultView: 'all',
+            baseHost: `http://${config.host}`
+        }
     }
 };
