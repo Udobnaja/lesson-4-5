@@ -7,7 +7,37 @@ const stubs = {
        Date: 14 hours ago 
        Commit message: убрать из докер образа тесты`,
     stubFolder: 'client',
-    stubFolderContent: ['images', 'index.js', 'sass']
+    stubFolderContent: ['images', 'index.js', 'sass'],
+    stubPathToFile: '/app/tree/branch/file.js',
+    expectTree: {
+        dir: '',
+        children: [
+            {
+                dir: 'app',
+                children: [
+                    {
+                        dir: 'tree',
+                        children: [
+                            {
+                                dir: 'branch',
+                                children: [
+                                    {
+                                        dir: 'file.js',
+                                        children: null,
+                                        parent: '/app/tree/branch/file.js',
+                                    }
+                                ],
+                                parent: '/app/tree/branch/file.js',
+                            }
+                        ],
+                        parent: '/app/tree/branch/file.js',
+                    }
+                ],
+                parent: '/app/tree/branch/file.js',
+            }
+        ],
+        parent: '/app/tree/branch/file.js',
+    }
 };
 
 module.exports = stubs;

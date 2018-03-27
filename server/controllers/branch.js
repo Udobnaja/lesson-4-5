@@ -6,6 +6,12 @@ const {getBranchList, getFormattedCommitList} = require('../api/index');
 exports.renderBranchList = (req, res) => {
     getBranchList()
         .then((branches) => {
+            const index = branches.findIndex((branch) => branch === defaultBranch);
+            if (index !== -1 && branches.length !== 1) {
+                let b = branches[index];
+                branches.splice(index, 1);
+                branches.splice(0, 0, b);
+            }
             res.render('branch-list',{
                 branches,
                 defaultBranch,

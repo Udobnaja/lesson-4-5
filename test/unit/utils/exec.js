@@ -2,12 +2,10 @@ const chai = require('chai');
 const expect = chai.expect;
 const exec = require('../../../server/utils/child_process/exec');
 
-describe('Exec util', () => {
-    it('Should be equal current working dirrectory', () => {
+describe('Проверка работы Утилиты Exec', () => {
+    it('Должна соответствовать текущей рабочей дирректории', () => {
         exec('pwd').then((pwd) => {
             expect(pwd).to.equal(process.cwd());
-        }).catch(() => {
-
-        });
+        }).catch(e => e);
     });
 });

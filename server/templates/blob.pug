@@ -3,13 +3,14 @@ extends layouts/default.pug
 block content
     h3 FILE
     if breadcrumbs
-        p
+        p.breadcrumbs
             - var deep = ''
             each crumb in breadcrumbs
                 - deep += '/' + crumb
                 a(href= '/ls-tree/' + branch + deep)= crumb + '/'
     else
-        a(href= '/ls-tree/' + branch) /
+        p.breadcrumbs
+            a(href= '/ls-tree/' + branch) /
     if body
         pre.blob(style="border: 1px solid #a8a8a8")
             =body

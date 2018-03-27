@@ -4,41 +4,85 @@ const assert = chai.assert;
 
 const {blobHash, blobContent, stubHash, stubFolder, stubFolderContent} = require('../fixtures/stubs');
 
-describe('Router / or /branch', () => {
-    it('expected content of Page Title', function () {
+describe('Страница / или /branch', () => {
+    it('Загаловок сраницы должен соотвествовать "Test Your Local Git"', function () {
         return this.browser
             .url('/')
             .getTitle()
             .then((title) => assert.equal(title, 'Test Your Local Git'));
     });
 
-    it('expected Branch List', function () {
+    it('На странице должен отображаться список веток', function () {
         return this.browser
             .url('/')
             .isExisting('.list.branch-list')
-            .then((exists) => assert.isTrue(exists, 'Branch list exist'));
+            .then((exists) => assert.isTrue(exists, 'Список веток не отобразился'));
     });
 
-    describe(`Default Branch: ${defaultBranch}`, () => {
-        it('expected Default Branch class', function () {
+    describe(`Работа с веткой по умолчанию: ${defaultBranch}`, () => {
+        it('На странице должна отображаться ветка по умолчанию', function () {
             return this.browser
                 .url('/')
                 .isExisting('.branch-list__item_default')
-                .then((exists) => assert.isTrue(exists, 'Default Branch exist'));
+                .then((exists) => assert.isTrue(exists, 'На странице нет ветки по умолчанию'));
         });
 
-        it(`Default Branch should be equal ${defaultBranch}`, function () {
+        it(`Название ветки по умолчанию должно быть - ${defaultBranch}`, function () {
             return this.browser
                 .url('/')
                 .getText('.branch-list__item_default .branch-list__link')
                 .then((name) => assert.equal(name, defaultBranch));
         });
+
+        it('Ветка по умолчанию должна отображаться первой в списке', function () {
+            return this.browser
+                .url('/')
+                .$('.branch-list__link')
+                .getText()
+                .then((name) => assert.equal(name, defaultBranch));
+        });
+
+        it('По клику на ветку происходит редирект на страницу коммитов ветки', function () {
+            let element = this.browser
+                .url('/')
+                .$('.branch-list__link');
+
+            let branchName = '';
+
+            return element
+                .getText()
+                .then((name) => {
+                    branchName = name;
+                    return element;
+                })
+                .click()
+                .getUrl()
+                .then((url) => assert.equal(url, `http://${host}:${port}/branch/${branchName}`));
+        });
+
+        it('По клику на кнопку Browse Files происходит редирект на страницу файловой сруктуры коммита', function () {
+            let element = this.browser
+                .url('/')
+                .$('.button');
+
+            let href = '';
+
+            return element
+                .getAttribute('href')
+                .then((h) => {
+                    href = h;
+                    return element;
+                })
+                .click()
+                .getUrl()
+                .then((url) => assert.equal(url, href));
+        });
     });
 });
 
-describe(`Router /branch/${defaultBranch}`, () => {
+describe('Страница /branch/:defaultBranch', () => {
 
-    it('Click on the hash redirect to commit files structure', async function () {
+    it('По клику на хеш коммита - происходит редирект на страницу с файловой структурой', function () {
         let element = this.browser
             .url(`/branch/${defaultBranch}`)
             .$('.list__item')
@@ -49,54 +93,16 @@ describe(`Router /branch/${defaultBranch}`, () => {
         return element.getText().then((text) => {
             hash = text;
             return element;
-        }).click()
+        })
+            .click()
             .getUrl()
             .then((url) => assert.equal(url, `http://${host}:${port}/ls-tree/${hash}`));
     });
+});
 
-    it('Click on the Folder redirect to inner layout', function () {
-        let element = this.browser
-            .url(`/ls-tree/${stubHash}`)
-            .$('.tree-list__item-folder');
-        let folder = '';
+describe('Страница /ls-tree/:hash/(*вложенные папки)?', () => {
 
-        return element
-            .getText()
-            .then((text) => {
-                folder = text;
-                return element;
-            })
-            .click()
-            .getUrl()
-            .then((url) => assert.equal(url, `http://${host}:${port}/ls-tree/${stubHash}/${folder}`));
-    });
-
-    it('Should return Folder Structure', function () {
-        return this.browser
-            .url(`/ls-tree/${stubHash}/${stubFolder}`)
-            .isExisting('.tree-list')
-            .then((exists) => assert.isTrue(exists, 'Folder Structure Exists'));
-    });
-
-    it('Correct Sub Folder Content', function () {
-        return this.browser
-            .url(`/ls-tree/${stubHash}/${stubFolder}`)
-            .getText('.list__link')
-            .then((items) => assert.deepEqual(items, stubFolderContent, 'Contents are equal'));
-    });
-
-    it('Click on the the breadcrumb return to dir', function () {
-        return this.browser
-            .url(`/ls-tree/${stubHash}/${stubFolder}`)
-            .$('.breadcrumbs')
-            .$('a')
-            .click()
-            .getUrl()
-            .then((url) => assert.equal(url, `http://${host}:${port}/ls-tree/${stubHash}/`));
-    });
-
-
-    it('Click on the File redirect to this File Page', function () {
+    it('Клик по файлу редиректит на страницу с содержанием файла', function () {
         let element = this.browser
             .url(`/ls-tree/${stubHash}`)
             .$('.tree-list__item-blob');
@@ -114,14 +120,65 @@ describe(`Router /branch/${defaultBranch}`, () => {
             .then((url) => assert.equal(url, href));
     });
 
-    it('Expected Blob content exist', function () {
+    it('Клик по папке редиректит во внутрь папки', function () {
+        let element = this.browser
+            .url(`/ls-tree/${stubHash}`)
+            .$('.tree-list__item-folder');
+        let folder = '';
+
+        return element
+            .getText()
+            .then((text) => {
+                folder = text;
+                return element;
+            })
+            .click()
+            .getUrl()
+            .then((url) => assert.equal(url, `http://${host}:${port}/ls-tree/${stubHash}/${folder}`));
+    });
+
+    it('На странице должен быть список с файловой структурой', function () {
+        return this.browser
+            .url('/ls-tree/:hash/:folder')
+            .isExisting('.tree-list')
+            .then((exists) => assert.isTrue(exists, 'Файловой структуры нет на странице'));
+    });
+
+    it('В директории  /ls-tree/:hash/:folder содержится ожидаемы контент', function () {
+        return this.browser
+            .url(`/ls-tree/${stubHash}/${stubFolder}`)
+            .getText('.list__link')
+            .then((items) => assert.deepEqual(items, stubFolderContent, 'Контент папки не соотвествует ожидаемому'));
+    });
+
+    it('На странице с поддиректорией должны отображаться хлебные крошки', function () {
+        return this.browser
+            .url(`/ls-tree/${stubHash}/${stubFolder}`)
+            .isExisting('.breadcrumbs')
+            .then((exists) => assert.isTrue(exists, 'Хлебные крошки не отобразились'));
+    });
+
+    it('Клик по элементу breadcrumb возращает в дирректорию, на которую был произведен клик', function () {
+        return this.browser
+            .url(`/ls-tree/${stubHash}/${stubFolder}`)
+            .$('.breadcrumbs')
+            .$('a')
+            .click()
+            .getUrl()
+            .then((url) => assert.equal(url, `http://${host}:${port}/ls-tree/${stubHash}/`));
+    });
+
+});
+
+describe('Страница /blob/:hash/:file-hash', () => {
+    it('На странице должен отображаться контент файла', function () {
         return this.browser
             .url(`/blob/${stubHash}/${blobHash}`)
             .isExisting('.blob')
-            .then((exists) => assert.isTrue(exists, 'Blob file exist'));
+            .then((exists) => assert.isTrue(exists, 'Контент файла не отображается'));
     });
 
-    it('Correct Blob content', function () {
+    it('Контент файла должен соотвествовать ожидаемому', function () {
         return this.browser
             .url(`/blob/${stubHash}/${blobHash}`)
             .$('.blob')
@@ -129,7 +186,12 @@ describe(`Router /branch/${defaultBranch}`, () => {
             .then((text) => assert.equal(text,blobContent));
     });
 
-
+    it('На странице с файлом должны отображаться хлебные крошки', function () {
+        return this.browser
+            .url(`/blob/${stubHash}/${blobHash}`)
+            .isExisting('.breadcrumbs')
+            .then((exists) => assert.isTrue(exists, 'Хлебные крошки не отобразились'));
+    });
 });
 
 

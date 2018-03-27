@@ -1,40 +1,13 @@
-const chai = require('chai');
-const expect = chai.expect;
+const {expect} = require('chai');
 const buildFlatTree = require('../../../server/helpers/buildFlatTree');
-const stubPath = '/app/tree/branch/file.js';
-const expectTree = {
-    dir: '',
-    children: [
-        {
-            dir: 'app',
-            children: [
-                {
-                    dir: 'tree',
-                    children: [
-                        {
-                            dir: 'branch',
-                            children: [
-                                {
-                                    dir: 'file.js',
-                                    children: null,
-                                    parent: stubPath,
-                                }
-                            ],
-                            parent: stubPath,
-                        }
-                    ],
-                    parent: stubPath,
-                }
-            ],
-            parent: stubPath,
-        }
-    ],
-    parent: stubPath,
-};
+const {
+    stubPathToFile,
+    expectTree
+} = require('../../fixtures/stubs');
 
-describe('buildFlatTree helper function', () => {
-    it('Should return object with subdirectories and children from string path', () => {
-        const tree = buildFlatTree(stubPath, stubPath);
+describe('Проверка работы helper функции buildFlatTree', () => {
+    it('Должна возвращать объект с поддиректориями из строки, представляющей собой путь к файлу', () => {
+        const tree = buildFlatTree(stubPathToFile, stubPathToFile);
         expect(tree).to.deep.include(expectTree);
     });
 });
