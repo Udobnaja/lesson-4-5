@@ -24,7 +24,7 @@ const getBranchList = async () => {
 };
 
 const getCommitsListHash = async ({branch}) => {
-    let hashListString = await exec(`git log ${config.local ? '' : 'origin/'} ${branch} --pretty=format:'%H'`, options);
+    let hashListString = await exec(`git log ${config.local ? '' : 'origin/'}${branch} --pretty=format:'%H'`, options);
     return hashListString.split('\n');
 };
 
