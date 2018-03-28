@@ -1,5 +1,5 @@
 const config = {
-    local: true,
+    local: !process.env.REMOTE,
     logger: {
         level: 'debug',
         format: 'combined'
