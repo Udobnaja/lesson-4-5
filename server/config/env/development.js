@@ -1,4 +1,5 @@
 const config = {
+    local: true,
     logger: {
         level: 'debug',
         format: 'combined'

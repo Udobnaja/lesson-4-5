@@ -1,7 +1,6 @@
 const exec = require('../utils/child_process/exec');
 const config = require('../config/index');
 const options = config.setting.exec.options;
-const readDir = require('../utils/fs/readdir');
 
 
 const getFileContent = async ({name}) => {
@@ -9,14 +8,19 @@ const getFileContent = async ({name}) => {
 };
 
 const getBranchList = async () => {
-    let heads = await exec('git show-ref --heads');
-    let branches = heads.split('\n').map((s) => {
-        const pos = s.lastIndexOf('/');
-        return s.slice(pos + 1);
-    });
-    branches.pop();
+    let heads = await exec('git show-ref');
+    let isLocal = config.local;
 
-    return branches;
+    return heads.split('\n')
+        .filter((s) => s.includes(isLocal ? 'heads' : 'origin'))
+        .reduce((result, s) => {
+            const pos = s.lastIndexOf('/');
+            const string = s.slice(pos + 1);
+            if (string !== 'HEAD') {
+                result.push(string);
+            }
+            return result;
+        }, []);
 };
 
 const getCommitsListHash = async ({branch}) => {
