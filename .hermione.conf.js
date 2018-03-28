@@ -15,11 +15,11 @@ module.exports = {
                 browserName: 'chrome'
             }
         },
-        firefox: {
-            desiredCapabilities: {
-                browserName: 'firefox'
-            }
-        }
+        // firefox: {
+        //     desiredCapabilities: {
+        //         browserName: 'firefox'
+        //     }
+        // }
     },
     plugins: {
         'html-reporter/hermione': {

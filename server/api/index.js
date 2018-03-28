@@ -33,13 +33,15 @@ const getFormattedCommitList = async ({branch}) => {
                 promises.push(getCommitInfo({hash})
                     .then((info) => {
                         return {hash, info};
-                    }).catch(e => e));
+                    }).catch((e) => {
+                        throw (e);
+                    }));
             }
 
             return Promise.all([...promises]);
 
-        }).catch((error) => {
-            return error;
+        }).catch((e) => {
+            throw (e);
         });
 };
 
@@ -59,7 +61,9 @@ const getFilesStructure = async ({path}) => {
 
             files.pop();
             return files;
-        }).catch(e => e);
+        }).catch((e) => {
+            throw (e);
+        });
 };
 
 module.exports = {

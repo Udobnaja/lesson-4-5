@@ -139,7 +139,7 @@ describe('Страница /ls-tree/:hash/(*вложенные папки)?', ()
 
     it('На странице должен быть список с файловой структурой', function () {
         return this.browser
-            .url('/ls-tree/:hash/:folder')
+            .url(`/ls-tree/${stubHash}/${stubFolder}`)
             .isExisting('.tree-list')
             .then((exists) => assert.isTrue(exists, 'Файловой структуры нет на странице'));
     });
@@ -168,6 +168,20 @@ describe('Страница /ls-tree/:hash/(*вложенные папки)?', ()
             .then((url) => assert.equal(url, `http://${host}:${port}/ls-tree/${stubHash}/`));
     });
 
+    it('Страница должна отображать ошибку для не существующего хеша', function () {
+        return this.browser
+            .url('/ls-tree/not-existed-hash')
+            .isExisting('.error-text')
+            .then((exists) => assert.isTrue(exists, 'Такой хеш существует'));
+    });
+
+    it('Страница должна отображать ошибку для не существующей дирректории', function () {
+        return this.browser
+            .url(`/ls-tree/${stubHash}/not-existed-folder`)
+            .isExisting('.error-text')
+            .then((exists) => assert.isTrue(exists, 'Такая дирректория существует'));
+    });
+
 });
 
 describe('Страница /blob/:hash/:file-hash', () => {
@@ -191,6 +205,30 @@ describe('Страница /blob/:hash/:file-hash', () => {
             .url(`/blob/${stubHash}/${blobHash}`)
             .isExisting('.breadcrumbs')
             .then((exists) => assert.isTrue(exists, 'Хлебные крошки не отобразились'));
+    });
+
+    it('Страница должна отображать ошибку для не существующего файла', function () {
+        return this.browser
+            .url(`/blob/${stubHash}/not-existed-file`)
+            .isExisting('.error-text')
+            .then((exists) => assert.isTrue(exists, 'Такой файл не существует'));
+    });
+});
+
+describe('Роутинг на несуществующую страницу', () => {
+    it('На странице должен отобразится блок текста с ошибкой', function () {
+        return this.browser
+            .url('/route-not-exist')
+            .isExisting('.error-text')
+            .then((exists) => assert.isTrue(exists, 'Такой роут существует'));
+    });
+
+    it('Текст ошибки должен соотвествовать: Error: Not Found', function () {
+        return this.browser
+            .url('/route-not-exist')
+            .$('.error-text')
+            .getText()
+            .then((text) => assert.equal(text, 'Error: Not Found'));
     });
 });
 
