@@ -8,7 +8,7 @@ const getFileContent = async ({name}) => {
 };
 
 const getBranchList = async () => {
-    let heads = await exec('git show-ref');
+    let heads = await exec('git show-ref', options);
     let isLocal = config.local;
 
     return heads.split('\n')
