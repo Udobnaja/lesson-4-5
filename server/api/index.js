@@ -1,6 +1,7 @@
 const exec = require('../utils/child_process/exec');
 const config = require('../config/index');
 const options = config.setting.exec.options;
+const isLocal = config.local;
 
 
 const getFileContent = async ({name}) => {
@@ -8,8 +9,7 @@ const getFileContent = async ({name}) => {
 };
 
 const getBranchList = async () => {
-    let heads = await exec('git show-ref', options);
-    let isLocal = config.local;
+    const heads = await exec('git show-ref', options);
 
     return heads.split('\n')
         .filter((s) => s.includes(isLocal ? 'heads' : 'origin'))
@@ -24,7 +24,7 @@ const getBranchList = async () => {
 };
 
 const getCommitsListHash = async ({branch}) => {
-    let hashListString = await exec(`git log ${branch} --pretty=format:'%H'`, options);
+    let hashListString = await exec(`git log ${config.local ? '' : 'origin/'} ${branch} --pretty=format:'%H'`, options);
     return hashListString.split('\n');
 };
 
