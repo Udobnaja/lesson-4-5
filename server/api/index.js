@@ -9,7 +9,14 @@ const getFileContent = async ({name}) => {
 };
 
 const getBranchList = async () => {
-    return await readDir(`${options.cwd}/${config.setting.git}refs/heads/`);
+    let heads = await exec('git show-ref --heads');
+    let branches = heads.split('\n').map((s) => {
+        const pos = s.lastIndexOf('/');
+        return s.slice(pos + 1);
+    });
+    branches.pop();
+
+    return branches;
 };
 
 const getCommitsListHash = async ({branch}) => {
