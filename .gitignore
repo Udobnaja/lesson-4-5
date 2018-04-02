@@ -16,3 +16,4 @@ node_modules/
 
 # Other files
 /.env
+/.nyc_output
