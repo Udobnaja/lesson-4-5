@@ -9,7 +9,8 @@
     "server": "node index.js",
     "server:watch": "nodemon -e scss,pug,js --watch index.js",
     "pretest": "npm run lint",
-    "test": "nyc mocha test/unit/** --reporter spec",
+    "test": "mocha test/unit/** --reporter spec",
+    "test:coverage": "nyc mocha test/unit/** ",
     "lint": "npm run lint:js && npm run lint:sass",
     "lint:js": "eslint --ignore-path .gitignore .",
     "lint:js:fix": "eslint --fix --ignore-path .gitignore .",
@@ -26,6 +27,11 @@
     "lint:js",
     "test"
   ],
+  "nyc": {
+    "exclude": [
+      "server/config/**"
+    ]
+  },
   "author": "Udobnaja",
   "license": "ISC",
   "dependencies": {
@@ -49,6 +55,7 @@
     "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.23.6",
     "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
