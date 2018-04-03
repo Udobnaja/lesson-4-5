@@ -1,6 +1,6 @@
 const renderError = require('../helpers/renderError');
 const config = require('../config');
-const {getFileContent} = require('../api/index');
+const {getFileContent} = require('../utils/git/index');
 
 exports.renderBlobContent = (req, res) => {
     let branch = req.params.branch;

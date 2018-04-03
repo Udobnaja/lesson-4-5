@@ -4,7 +4,7 @@ const {
     getBranchList,
     getCommitInfo,
     getFilesStructure
-} = require('../../../server/api/index');
+} = require('../../../server/utils/git/index');
 const {
     blobHash,
     blobContent,

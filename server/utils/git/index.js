@@ -1,5 +1,5 @@
-const exec = require('../utils/child_process/exec');
-const config = require('../config/index');
+const exec = require('../child_process/exec');
+const config = require('../../config/index');
 const options = config.setting.exec.options;
 const isLocal = config.local;
 

@@ -1,7 +1,7 @@
 const renderError = require('../helpers/renderError');
 const config = require('../config');
 const {defaultBranch} = config;
-const {getBranchList, getFormattedCommitList} = require('../api/index');
+const {getBranchList, getFormattedCommitList} = require('../utils/git/index');
 
 exports.renderBranchList = (req, res) => {
     getBranchList()

@@ -2,7 +2,7 @@ const renderError = require('../helpers/renderError');
 const config = require('../config');
 const options = config.setting.exec.options;
 const exec = require('../utils/child_process/exec');
-const {getFilesStructure} = require('../api/index');
+const {getFilesStructure} = require('../utils/git/index');
 
 exports.renderLsTree = (req, res) => {
     let isTop = req.path.length === 1;
