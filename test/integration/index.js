@@ -5,7 +5,7 @@ const assert = chai.assert;
 const {blobHash, blobContent, stubHash, stubFolder, stubFolderContent} = require('../fixtures/stubs');
 
 describe('Страница / или /branch', () => {
-    it('Загаловок сраницы должен соотвествовать "Test Your Local Git"', function () {
+    it('Заголовок сраницы должен соотвествовать "Test Your Local Git"', function () {
         return this.browser
             .url('/')
             .getTitle()
