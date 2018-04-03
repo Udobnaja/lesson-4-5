@@ -6,9 +6,12 @@
 
 ## Команды для тестов
 
-Проверить unit тесты `npm run test` 
+Проверить unit тесты `npm run test`  
+Тесты с покрытием `npm run test:coverage`
 
-Перед запуском интеграционных тестов `selenium-standalone start` `node index.js`
+Перед запуском интеграционных тестов:   
+`selenium-standalone start`   
+`node index.js`
 
 Запустить интеграционные тесты ~~`./node_modules/.bin/hermione  test/integration/ `;~~
 `npm run hermione`
