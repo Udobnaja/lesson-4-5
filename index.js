@@ -51,7 +51,7 @@ app
     .use(require('./server/routes/'))
     .use(require('./server/routes/term'))
     .use(require('./server/routes/branch'))
-    .use(require('./server/routes/tree'))
+    // .use(require('./server/routes/tree'))
     .use(require('./server/routes/blob'))
     .use(require('./server/routes/ls-tree'));
 // 404
