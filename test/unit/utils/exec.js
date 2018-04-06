@@ -5,10 +5,9 @@ chai.use(require('chai-as-promised'));
 const exec = require('../../../server/utils/child_process/exec');
 
 describe('Проверка работы Утилиты Exec', () => {
-    it('Должна соответствовать текущей рабочей дирректории', () => {
-        exec('pwd').then((pwd) => {
-            expect(pwd).to.equal(process.cwd());
-        }).catch(e => e);
+    it('Должна соответствовать текущей рабочей дирректории', async () => {
+        const pwd = await exec('pwd');
+        expect(pwd).to.equal(process.cwd());
     });
 
     it('Должна выбрасывать ошибку, если, например, такой команды не существует', async () => {

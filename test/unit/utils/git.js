@@ -34,7 +34,7 @@ describe('Получение списка веток', () => {
 describe('Получение информации о коммите по хешу', () => {
     it('Должен возвращать строку с информацией об авторе идентичной заглушке', async () => {
         const info = await getCommitInfo({hash: stubHash});
-        assert.equal(info.split('\n')[1].trim(), stubCommitInfo.split('\n')[1].trim()); // потому что даты разные будут
+        assert.equal(info.split('\n')[0].trim(), stubCommitInfo.split('\n')[1].trim()); // потому что даты разные будут
     });
 
     it('Должен возвращать ошибку, если такого хеша нет', async () => {
@@ -48,11 +48,8 @@ describe('Получение файловой структуры', () => {
         assert.deepEqual(structure.map(e => e.name), stubFolderContent);
     });
 
-    it('Должен возвращать ошибку, если такого пути нет', () => {
-        getFilesStructure({path: 'not_a_path_at_all'}).then().catch((e) => {
-            expect(e).to.throw();
-        });
-
+    it('Должен возвращать ошибку, если такого пути нет', async () => {
+        await getFilesStructure({path: 'not_a_path_at_all'}).should.be.rejectedWith('fatal');
     });
 });
 

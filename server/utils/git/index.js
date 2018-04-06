@@ -49,7 +49,9 @@ const getFormattedCommitList = async ({branch}) => {
                     }));
             }
 
-            return Promise.all([...promises]);
+            return Promise
+                .all([...promises])
+                .catch((e) => e);
 
         }).catch((e) => {
             throw (e);
@@ -69,8 +71,6 @@ const getFilesStructure = async ({path}) => {
             for (let i = 0; i < structure.length; i += 3) {
                 files.push({type: structure[i], hash: structure[i + 1], name: structure[i + 2]});
             }
-
-            files.pop();
             return files;
         }).catch((e) => {
             throw (e);

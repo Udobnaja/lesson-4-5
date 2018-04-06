@@ -5,6 +5,6 @@ module.exports = (command, options) => new Promise((resolve, reject) => {
         if (err || stderr) {
             return reject(err || stderr);
         }
-        resolve(stdout);
+        resolve(stdout.trim());
     });
 });
